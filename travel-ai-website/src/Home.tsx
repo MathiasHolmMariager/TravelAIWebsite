@@ -1,6 +1,7 @@
 import './Home.css'
 import NavBar from './components/NavBar';
 import {Outlet} from "react-router"
+import MyComponent from './TestKnap';
 
 
 function Home() {
@@ -8,7 +9,9 @@ function Home() {
   <div className='NavBar'>
     <NavBar/>
   </div>
-  
+  <div>
+    <MyComponent/>
+  </div>
   <Outlet/>
   </>
 }
