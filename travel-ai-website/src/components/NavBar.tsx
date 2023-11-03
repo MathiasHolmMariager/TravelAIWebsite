@@ -7,13 +7,13 @@ function NavBar() {
   return (
     <div className="navbar">
       <div className="leftSide">
-        <Link to="/">
+        <Link to="/hotel">
         <img src={reactLogo} className="logoreact" alt="React logo"/>
         </Link>
         
         
       </div>
-      <div className="rightSide">
+      <div className="rightSide">        
         <Link to="/fly">Fly side </Link>
 
         <Link to="/hotel">Hotel side </Link>
