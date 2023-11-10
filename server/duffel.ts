@@ -6,16 +6,21 @@ const duffel = new Duffel({
 
 export async function getDuffel () {
     const offerRequest = await duffel.offerRequests.create({
-        "slices": [
-          {
-            "origin": 'LHR',
-            "destination": 'JFK',
-            "departure_date": "2024-04-29T11:10:45.261Z"
-          },
-        ],
-        "passengers": [{ "type": "adult" }],
-        "cabin_class": undefined
-      })
+      slices : [
+        {
+          origin: "NYC",
+          destination: "ATL",
+          departure_date: "2024-06-21"
+        },
+        {
+          origin: "ATL",
+          destination: "NYC",
+          departure_date: "2024-07-21"
+        }
+      ],
+      passengers: [{ type: "adult" }, { type: "adult" }, { age: 1 }],
+      cabin_class: "business",
+    })
       
       const offers = await duffel.offers.list({offer_request_id: offerRequest.data.id})
 
