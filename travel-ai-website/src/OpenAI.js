@@ -3,9 +3,9 @@ import OpenAI from "openai";
 const openai = new OpenAI({
   apiKey: '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'});
 
-export async function OpenAItest() {
+export async function OpenAItest(prompt) {
   const completion = await openai.chat.completions.create({
-    messages: [{ role: "system", content: "Who won the 1992 European Championship in football?" }],
+    messages: [{ role: "system", content: prompt}],
     model: "gpt-3.5-turbo",
   });
 
