@@ -7,7 +7,7 @@ function NavBar() {
   return (
     <div className="navbar">
       <div className="leftSide">
-        <Link to="/home">
+        <Link to="/">
         <img src={reactLogo} className="logoreact" alt="React logo"/>
         </Link>
         
