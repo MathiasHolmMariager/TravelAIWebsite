@@ -4,6 +4,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
+import {OpenAItest} from '../../OpenAI'
 
 export default function ReturnInput() {
   const [userInput, setUserInput] = React.useState(''); // Initialize user input state with an empty string
@@ -13,9 +14,15 @@ export default function ReturnInput() {
     setUserInput(event.target.value); // Update the user input state when the input changes
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setUserOutput(userInput); // Update the user output state when the form is submitted
+    if (userInput) {
+      const response = await OpenAItest(userInput);
+      // Check if the response is not null before setting the state
+      if (response) {
+        setUserOutput(response); // Update the user output state with the response
+      } else {}
+    }
   };
 
   return (
