@@ -56,7 +56,13 @@ export default function ReturnInput() {
           </Button>
         </form>
 
-        <textarea id="UserOutput" readOnly value={userOutput}></textarea>
+        <textarea
+        readOnly
+        id="UserOutput"
+        value={userOutput}
+        style={{resize:'none', height: '250px', width: '100%', marginTop: '10px'}}
+        />
+        
       </Box>
     </Container>
   );
