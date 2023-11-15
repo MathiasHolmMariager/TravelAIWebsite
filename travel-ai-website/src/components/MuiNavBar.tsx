@@ -7,8 +7,8 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
 
-const stepPaths = ["/", "/fly", "/hotel", "/oplevelser", "/overview"];
-const stepNames = ["Home", "Fly", "Hotel", "Oplevelser", "Overview"];
+const stepPaths = ["/", "/fly", "/hotel","/persons", "/oplevelser", "/overview"];
+const stepNames = ["Home", "Fly", "Hotel", "Persons","Oplevelser", "Overview"];
 
 export default function HorizontalLinearStepper() {
   const navigate = useNavigate();
