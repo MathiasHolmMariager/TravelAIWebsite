@@ -1,13 +1,14 @@
 import './App.css'
-import NavBar from './components/NavBar';
+import HorizontalLinearStepper from './components/MuiNavBar'
 import {Outlet} from "react-router"
 
 
 function App() {
   return <>
   <div className='NavBar'>
-    <NavBar/>
+    <HorizontalLinearStepper/>
   </div>
+
   <Outlet/>
   </>
 }

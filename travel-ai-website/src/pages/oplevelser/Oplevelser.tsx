@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import {OpenAItest} from '../../OpenAI'
 
+
 export default function ReturnInput() {
   const [userInput, setUserInput] = React.useState(''); // Initialize user input state with an empty string
   const [userOutput, setUserOutput] = React.useState(''); // Initialize user output state with an empty string
@@ -27,6 +28,7 @@ export default function ReturnInput() {
 
   return (
     <Container component="main" maxWidth="xs">
+      
       <CssBaseline />
       <Box
         sx={{
