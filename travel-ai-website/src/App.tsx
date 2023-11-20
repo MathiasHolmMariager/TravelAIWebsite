@@ -8,6 +8,7 @@ function App() {
   <div className='NavBar'>
     <HorizontalLinearStepper/>
   </div>
+
   <Outlet/>
   </>
 }
