@@ -1,6 +1,7 @@
 import express = require("express");
 import { getDuffel } from "./duffel";
 const HTTP = require("http-status-codes");
+import { getDuffelStays } from "./duffelStays";
  
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -25,9 +26,15 @@ app.post("/duffel", async (req, resp) => {
     const res = await getDuffel();
 
     return resp.status(HTTP.OK).json({res: res})
-})
+});
+
+app.post("/duffelStays", async (req, resp) => {
+    const res = await getDuffelStays();
+
+    return resp.status(HTTP.OK).json({res: res});
+});
 
 app.listen(1337, () => {
     console.log('Backend listening on PORT 1337');
     
-})
+});

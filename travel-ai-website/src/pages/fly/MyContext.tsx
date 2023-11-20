@@ -1,4 +1,3 @@
-// MyContext.tsx
 import React, { ReactNode, createContext, useContext, useState } from 'react';
 
 interface Item {
@@ -12,11 +11,15 @@ interface Item {
   arriving_time_home: Date;
 }
 
-interface MyProviderProps { children: ReactNode; }
+interface MyProviderProps {
+  children: ReactNode;
+}
 
 interface MyContextData {
   sortedArray: Item[];
   updateSortedArray: (newArray: Item[]) => void;
+  buttonClicked: boolean;
+  setButtonClicked: (clicked: boolean) => void;
 }
 
 // Create the context with an initial value
@@ -24,6 +27,7 @@ const MyContext = createContext<MyContextData | undefined>(undefined);
 
 export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
   const [sortedArray, setSortedArray] = useState<Item[]>([]);
+  const [buttonClicked, setButtonClicked] = useState<boolean>(false);
 
   const updateSortedArray = (newArray: Item[]) => {
     setSortedArray(newArray);
@@ -32,6 +36,8 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
   const contextValue: MyContextData = {
     sortedArray,
     updateSortedArray,
+    buttonClicked,
+    setButtonClicked,
   };
 
   return <MyContext.Provider value={contextValue}>{children}</MyContext.Provider>;

@@ -1,10 +1,10 @@
 import React from 'react';
 import axios from 'axios';
-import { SERVER_PORT } from './Constants';
+import { SERVER_PORT } from '../../Constants';
 import { useMyContext } from './MyContext';
 
 function MyComponent() {
-  const { updateSortedArray } = useMyContext();
+  const { updateSortedArray, setButtonClicked, buttonClicked } = useMyContext();
 
   const onClick = async () => {
     try {
@@ -21,8 +21,9 @@ function MyComponent() {
         arriving_time_home: new Date(item.slices[1].segments[0].arriving_at),
       }));
 
-      // Update the sortedArray in the context
+      // Update the sortedArray in the context and set buttonClicked to true
       updateSortedArray(sortedArray);
+      setButtonClicked(true);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -30,7 +31,7 @@ function MyComponent() {
 
   return (
     <div>
-      <button onClick={onClick}>Click me to test</button>
+      {!buttonClicked && <button onClick={onClick}>Click me to test</button>}
     </div>
   );
 }
