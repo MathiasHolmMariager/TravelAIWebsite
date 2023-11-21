@@ -9,6 +9,10 @@ interface Item {
   arriving_time_away: Date;
   departing_time_home: Date;
   arriving_time_home: Date;
+  airport_departing_away: string;
+  airport_arriving_away: string;
+  airport_departing_home: string;
+  airport_arriving_home: string;
 }
 
 interface MyProviderProps {

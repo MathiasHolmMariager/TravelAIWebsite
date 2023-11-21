@@ -23,9 +23,11 @@ function FlightsComponent() {
                     <p>
                       Trip to destination: {item.departing_time_away.toLocaleDateString()} {item.departing_time_away.toLocaleTimeString(navigator.language, {hour: '2-digit', minute:'2-digit'})} - {item.arriving_time_away.toLocaleTimeString(navigator.language, {hour: '2-digit', minute:'2-digit'})}
                     </p>
+                    <p>{item.airport_departing_away} - {item.airport_arriving_away}</p>
                     <p>
                       Return trip: {item.departing_time_home.toLocaleDateString()} {item.departing_time_home.toLocaleTimeString(navigator.language, {hour: '2-digit', minute:'2-digit'})} - {item.arriving_time_home.toLocaleTimeString(navigator.language, {hour: '2-digit', minute:'2-digit'})}
                     </p>
+                    <p>{item.airport_departing_home} - {item.airport_arriving_home}</p>
                   </ul>
                 
               </ListItemText>
