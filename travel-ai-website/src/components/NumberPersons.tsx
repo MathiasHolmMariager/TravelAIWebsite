@@ -4,22 +4,17 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
 const NumberInput: React.FC = () => {
-  const [adults, setAdults] = React.useState<number>(0);
-  const [kids, setKids] = React.useState<number>(0);
-
   // Load values from local storage on component mount
-  useEffect(() => {
-    const savedAdults = localStorage.getItem('adults');
-    const savedKids = localStorage.getItem('kids');
+  const savedAdults = localStorage.getItem('adults');
+  const savedKids = localStorage.getItem('kids');
 
-    if (savedAdults) {
-      setAdults(Number(savedAdults));
-    }
+  const [adults, setAdults] = React.useState<number>(
+    savedAdults ? Number(savedAdults) : 0
+  );
 
-    if (savedKids) {
-      setKids(Number(savedKids));
-    }
-  }, []); // Run once on mount
+  const [kids, setKids] = React.useState<number>(
+    savedKids ? Number(savedKids) : 0
+  );
 
   const handleAdultsIncrement = () => {
     setAdults(adults + 1);
@@ -72,4 +67,3 @@ const NumberInput: React.FC = () => {
 };
 
 export default NumberInput;
-
