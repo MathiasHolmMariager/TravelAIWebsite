@@ -36,48 +36,34 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var express = require("express");
-var duffel_1 = require("./duffel");
-var HTTP = require("http-status-codes");
-var duffelStays_1 = require("./duffelStays");
-var bodyParser = require("body-parser");
-var cors = require("cors");
-var dotenv = require('dotenv');
-dotenv.config();
-var app = express();
-app.use(bodyParser.json());
-app.use(bodyParser.json({ limit: '50mb' }));
-app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
-app.use(cors());
-app.use(function (req, resp, next) {
-    resp.header("Access-Control-Allow-Origin", "*");
-    resp.header("Access-Control-Allow-Headers", "X-Requested-With, privatekey");
-    resp.header("Access-Control-Allow-Methods", "GET, POST", "PUT", "DELETE");
-    resp.setHeader('content-type', 'application/json; charset=utf-8');
-    next();
+exports.getDuffelStays = void 0;
+var api_1 = require("@duffel/api");
+var duffel = new api_1.Duffel({
+    token: "duffel_test_SFvy4hsjdO6lNXXjM0iGhcE42JockQZPaOAVo5BBKSn"
 });
-app.post("/duffel", function (req, resp) { return __awaiter(void 0, void 0, void 0, function () {
-    var res;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, (0, duffel_1.getDuffel)()];
-            case 1:
-                res = _a.sent();
-                return [2 /*return*/, resp.status(HTTP.OK).json({ res: res })];
-        }
+function getDuffelStays() {
+    return __awaiter(this, void 0, void 0, function () {
+        var staysRequest;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, duffel.stays.search({
+                        rooms: 1,
+                        location: {
+                            radius: 2,
+                            geographic_coordinates: {
+                                longitude: -0.1416,
+                                latitude: 51.5071
+                            }
+                        },
+                        check_out_date: "2023-12-07",
+                        check_in_date: "2023-12-04",
+                        adults: 2
+                    })];
+                case 1:
+                    staysRequest = _a.sent();
+                    return [2 /*return*/, staysRequest];
+            }
+        });
     });
-}); });
-app.post("/duffelStays", function (req, resp) { return __awaiter(void 0, void 0, void 0, function () {
-    var res;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, (0, duffelStays_1.getDuffelStays)()];
-            case 1:
-                res = _a.sent();
-                return [2 /*return*/, resp.status(HTTP.OK).json({ res: res })];
-        }
-    });
-}); });
-app.listen(1337, function () {
-    console.log('Backend listening on PORT 1337');
-});
+}
+exports.getDuffelStays = getDuffelStays;

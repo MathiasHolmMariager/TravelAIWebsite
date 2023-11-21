@@ -1,6 +1,7 @@
 import reactLogo from '../assets/react.svg';
 import {Link} from "react-router-dom"
 import "./NavBar.css"
+import "../pages/fly/FlightTickets.css"
 
 // npm i react-router-dom
 function NavBar() {

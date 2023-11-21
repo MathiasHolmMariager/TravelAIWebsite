@@ -1,11 +1,11 @@
 import './Fly.css'
-import MyComponent from '../../TestKnap'
-import { MyProvider } from '../../MyContext'
-import FlightsComponent from '../../FlightTickets'
+import MyComponent from './TestKnap'
+import { MyProvider } from './MyContext'
+import FlightsComponent from './FlightTickets'
 
 
 function Fly() {
-  return (
+  return (  
     <MyProvider>
       Fly siden
       <MyComponent/>

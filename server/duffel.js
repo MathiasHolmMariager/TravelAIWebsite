@@ -49,18 +49,18 @@ function getDuffel() {
                 case 0: return [4 /*yield*/, duffel.offerRequests.create({
                         slices: [
                             {
-                                origin: "NYC",
-                                destination: "ATL",
-                                departure_date: "2024-06-21"
+                                "origin": "NYC",
+                                "destination": "ATL",
+                                "departure_date": "2023-12-22",
                             },
                             {
-                                origin: "ATL",
-                                destination: "NYC",
-                                departure_date: "2024-07-21"
+                                "origin": "ATL",
+                                "destination": "NYC",
+                                "departure_date": "2023-12-29"
                             }
                         ],
-                        passengers: [{ type: "adult" }, { type: "adult" }, { age: 1 }],
-                        cabin_class: "business",
+                        "passengers": [{ "type": "adult" }, { "type": "adult" }, { "age": 1 }],
+                        "cabin_class": "economy",
                     })];
                 case 1:
                     offerRequest = _a.sent();

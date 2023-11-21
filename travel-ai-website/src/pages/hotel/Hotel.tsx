@@ -1,22 +1,17 @@
 
 import './Hotel.css'
 import { useState } from "react";
+import HotelButton from './HotelButton';
 
 
 function Hotel() {
-  const [stringValue] = useState(() => {
-    const data = window.localStorage.getItem('STRING_VALUE_NAME');
-    return data !== null ? data : '';
-  });
-
   return (
     <div>
-      <input type="text" defaultValue={stringValue} />
-      
+      Hotel siden
+      <HotelButton/>
     </div>
+    
   )
-
-
 }
 
 export default Hotel
