@@ -7,12 +7,18 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
 
-const stepPaths = ["/", "/fly", "/hotel","/persons", "/oplevelser", "/overview"];
-const stepNames = ["Home", "Fly", "Hotel", "Persons","Oplevelser", "Overview"];
+const stepPaths = ["/", "/fly", "/hotel", "/persons", "/oplevelser", "/overview"];
+const stepNames = ["Home", "Fly", "Hotel", "Persons", "Oplevelser", "Overview"];
+
+const STORAGE_KEY = "activeStep";
 
 export default function HorizontalLinearStepper() {
   const navigate = useNavigate();
-  const [activeStep, setActiveStep] = React.useState(0);
+  const [activeStep, setActiveStep] = React.useState(() => {
+    // Retrieve the activeStep from localStorage or default to 0
+    const storedStep = localStorage.getItem(STORAGE_KEY);
+    return storedStep ? parseInt(storedStep, 10) : 0;
+  });
   const [skipped, setSkipped] = React.useState(new Set<number>());
 
   const isStepOptional = (step: number) => {
@@ -27,9 +33,6 @@ export default function HorizontalLinearStepper() {
     if (activeStep === stepPaths.length - 1) {
       // Handle the "Finish" scenario, e.g., perform any final actions
       console.log("Finish button clicked. Perform final actions.");
-      // You can choose to stay on the current page or navigate elsewhere
-      // For now, let's just log a message
-
       // Optionally, reset the stepper to the first step
       handleReset();
     } else {
@@ -68,6 +71,11 @@ export default function HorizontalLinearStepper() {
     setActiveStep(0);
     navigate(stepPaths[0]);
   };
+
+  // Update localStorage whenever activeStep changes
+  React.useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, String(activeStep));
+  }, [activeStep]);
 
   return (
     <Box sx={{ width: "80%" }}>
