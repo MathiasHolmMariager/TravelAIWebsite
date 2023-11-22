@@ -9,6 +9,7 @@ function MyComponent() {
   const onClick = async () => {
     try {
       const result = (await axios.post(`${SERVER_PORT}/duffel`)).data.res;
+      console.log(result);
 
       const sortedArray = result.data.map((item: any) => ({
         total_amount: item.total_amount,
@@ -19,6 +20,10 @@ function MyComponent() {
         arriving_time_away: new Date(item.slices[0].segments[0].arriving_at),
         departing_time_home: new Date(item.slices[1].segments[0].departing_at),
         arriving_time_home: new Date(item.slices[1].segments[0].arriving_at),
+        airport_departing_away: item.slices[0].origin.name,
+        airport_arriving_away: item.slices[0].destination.name,
+        airport_departing_home: item.slices[1].origin.name,
+        airport_arriving_home: item.slices[1].destination.name,
       }));
 
       // Update the sortedArray in the context and set buttonClicked to true
