@@ -5,14 +5,14 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Checkbox from "@mui/material/Checkbox";
+import "./Persons.css";
 
-const customNames = ["Food", "Sports", "History", "Art", "Nature", "Culture"];
+const customNames = ["Art", "Culture", "Food", "History", "Nature", "Sport"];
 
 export default function CheckboxList() {
   const numberOfAdults = localStorage.getItem("adults") || 0;
   const numberOfKids = localStorage.getItem("kids") || 0;
 
-  // Generate listNames array based on the number of adults and kids
   const generateListNames = () => {
     const adultsArray = Array.from(
       { length: Number(numberOfAdults) },
@@ -53,21 +53,19 @@ export default function CheckboxList() {
 
   return (
     <div>
-      <div style={{ display: "flex" }}>
+      <div className="persons-container">
         {listNames.map((listName, listIndex) => (
           <List
             key={listIndex}
+            className="person-list"
             sx={{
-              margin: 5,
-              border: "1px solid #ccc",
-              borderRadius: "5px",
               bgcolor: listColors[listIndex],
             }}
           >
             <ListItemText
               primary={
                 <span
-                  style={{ textDecoration: "underline", fontWeight: "bold" }}
+                  className="person-list-header"
                 >
                   {listName}
                 </span>
@@ -77,7 +75,7 @@ export default function CheckboxList() {
               const labelId = `checkbox-list-label-${index}`;
 
               return (
-                <ListItem key={index} disablePadding>
+                <ListItem key={index} disablePadding className="person-list-item">
                   <ListItemButton
                     role={undefined}
                     onClick={handleToggle(listName, itemName)}
@@ -100,32 +98,21 @@ export default function CheckboxList() {
           </List>
         ))}
       </div>
-      <div
-        style={{
-          border: "1px solid #ccc",
-          borderRadius: "5px",
-          padding: "10px",
-          marginTop: "10px",
-          backgroundColor: "#D3D3D3",
-        }}
-      >
+      <div className="personal-attributes-container">
         <strong>Personal attributes:</strong>
-        <ul
-          style={{
-            listStyle: "none",
-            padding: 0,
-            margin: 0,
-            borderTop: "1px solid #ccc",
-          }}
-        >
-          {listNames.map((listName, listIndex) => (
-            <li
-              key={listIndex}
-              style={{ borderBottom: "1px solid #ccc", padding: "5px" }}
-            >
-              {listName}: {checked[listName]?.join(", ")}
-            </li>
-          ))}
+        <ul className="personal-attributes-list">
+          {listNames.map((listName, listIndex) => {
+            const sortedItems = (checked[listName] || []).sort();
+
+            return (
+              <li
+                key={listIndex}
+                className="personal-attributes-item"
+              >
+                {listName}: {sortedItems.join(", ")}
+              </li>
+            );
+          })}
         </ul>
       </div>
     </div>
