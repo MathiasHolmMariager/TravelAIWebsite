@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 
 const NumberInput: React.FC = () => {
   // Load values from local storage on component mount
@@ -42,26 +42,41 @@ const NumberInput: React.FC = () => {
   }, [kids]);
 
   return (
-    <Box>
-      <Typography id="adults-label" gutterBottom>
-        Adults: {adults}
-      </Typography>
-      <Button variant="outlined" onClick={handleAdultsIncrement}>
-        +
-      </Button>
+    <Box display="flex" flexDirection="row">
+      <Box display="flex" alignItems="center">
       <Button variant="outlined" onClick={handleAdultsDecrement}>
-        -
-      </Button>
+          -
+        </Button>
+        
+        <TextField
+          margin="normal"
+          label="Adults"
+          id="adults-input"
+          type="number"
+          value={adults}
+          onChange={(e) => setAdults(Math.max(parseInt(e.target.value) || 0, 0))}
+        />
+        <Button variant="outlined" onClick={handleAdultsIncrement}>
+          +
+        </Button>
+      </Box>
 
-      <Typography id="kids-label" gutterBottom>
-        Kids: {kids}
-      </Typography>
-      <Button variant="outlined" onClick={handleKidsIncrement}>
-        +
-      </Button>
-      <Button variant="outlined" onClick={handleKidsDecrement}>
-        -
-      </Button>
+      <Box display="flex" alignItems="center">
+        <Button variant="outlined" onClick={handleKidsDecrement}>
+          -
+        </Button>
+        <TextField
+          margin="normal"
+          label="Kids"
+          id="kids-input"
+          type="number"
+          value={kids}
+          onChange={(e) => setKids(Math.max(parseInt(e.target.value) || 0, 0))}
+        />
+        <Button variant="outlined" onClick={handleKidsIncrement}>
+          +
+        </Button>
+      </Box>
     </Box>
   );
 };

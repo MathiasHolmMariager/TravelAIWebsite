@@ -69,4 +69,9 @@
     background-color: rgb(75, 74, 74);  
   }
   
+  .horizontal-row {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+  }
 

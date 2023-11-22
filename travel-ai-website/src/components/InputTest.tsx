@@ -39,7 +39,7 @@ function InputTest() {
       <Box
         sx={{
           display: "flex",
-          flexDirection: "column",
+          flexDirection: "row",
           alignItems: "center",
         }}
       >
@@ -51,7 +51,6 @@ function InputTest() {
           label="Depart from"
           name="Depart from"
           autoComplete="Depart from"
-          autoFocus
           value={stringValueFrom}
           onChange={handleInputChangeFrom}
         />
@@ -63,7 +62,6 @@ function InputTest() {
           label="Depart to"
           name="Depart to"
           autoComplete="Depart to"
-          autoFocus
           value={stringValueTo}
           onChange={handleInputChangeTo}
         />
