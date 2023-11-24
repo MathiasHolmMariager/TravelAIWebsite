@@ -4,31 +4,41 @@ import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import {OpenAItest} from '../../OpenAI'
+import { OpenAItest } from '../../OpenAI';
 
+interface Message {
+  role: string;
+  content: string;
+}
 
 export default function ReturnInput() {
-  const [userInput, setUserInput] = React.useState(''); // Initialize user input state with an empty string
-  const [userOutput, setUserOutput] = React.useState(''); // Initialize user output state with an empty string
+  const [userInput, setUserInput] = React.useState<string>('');
+  const [userOutput, setUserOutput] = React.useState<string>('');
+  const [conversationHistory, setConversationHistory] = React.useState<Message[]>([]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setUserInput(event.target.value); // Update the user input state when the input changes
+    setUserInput(event.target.value);
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (userInput) {
-      const response = await OpenAItest(userInput);
+      const { assistantReply, conversationHistory: updatedHistory } = await OpenAItest(userInput, conversationHistory);
+      setConversationHistory(updatedHistory);
+  
       // Check if the response is not null before setting the state
-      if (response) {
-        setUserOutput(response); // Update the user output state with the response
-      } else {}
+      if (assistantReply !== null) {
+        setUserOutput(assistantReply);
+      } else {
+        // Handle the case when the response is null
+        // You can set a default value or perform other actions as needed
+      }
     }
   };
+  
 
   return (
     <Container component="main" maxWidth="xs">
-      
       <CssBaseline />
       <Box
         sx={{
@@ -57,12 +67,11 @@ export default function ReturnInput() {
         </form>
 
         <textarea
-        readOnly
-        id="UserOutput"
-        value={userOutput}
-        style={{resize:'none', height: '250px', width: '100%', marginTop: '10px'}}
+          readOnly
+          id="UserOutput"
+          value={userOutput}
+          style={{ resize: 'none', height: '250px', width: '100%', marginTop: '10px' }}
         />
-        
       </Box>
     </Container>
   );

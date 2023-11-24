@@ -29,7 +29,12 @@ export default function CheckboxList() {
 
   const [checked, setChecked] = React.useState<{ [key: string]: string[] }>({});
 
-  const listColors = ["#ffcccb", "#c2f0c2", "#b3e0ff", "#f0e68c"];
+  const listColors = [
+    "#ffd0d1", "#ffcccb", "#ffb4b5", "#ff9a9b", "#ff8081",
+    "#c4f2c5", "#c2f0c2", "#a8e7a9", "#8edf8f", "#74d677",
+    "#b5e6ff", "#a3ccf9", "#90b3f3", "#7d9bf1", "#6b83eb",
+    "#f1e89f", "#f0e68c", "#eedf6f", "#ebd63f", "#e8cc0f",
+  ];
 
   const handleToggle = (listName: string, itemName: string) => () => {
     setChecked((prevChecked) => {
@@ -53,50 +58,52 @@ export default function CheckboxList() {
 
   return (
     <div>
-      <div className="persons-container">
-        {listNames.map((listName, listIndex) => (
-          <List
-            key={listIndex}
-            className="person-list"
-            sx={{
-              bgcolor: listColors[listIndex],
-            }}
-          >
-            <ListItemText
-              primary={
-                <span
-                  className="person-list-header"
-                >
-                  {listName}
-                </span>
-              }
-            />
-            {customNames.map((itemName, index) => {
-              const labelId = `checkbox-list-label-${index}`;
-
-              return (
-                <ListItem key={index} disablePadding className="person-list-item">
-                  <ListItemButton
-                    role={undefined}
-                    onClick={handleToggle(listName, itemName)}
-                    dense
+      <div className="persons-container-wrapper">
+        <div className="persons-container">
+          {listNames.map((listName, listIndex) => (
+            <List
+              key={listIndex}
+              className="person-list"
+              sx={{
+                bgcolor: listColors[listIndex],
+              }}
+            >
+              <ListItemText
+                primary={
+                  <span
+                    className="person-list-header"
                   >
-                    <ListItemIcon>
-                      <Checkbox
-                        edge="start"
-                        checked={checked[listName]?.includes(itemName) ?? false}
-                        tabIndex={-1}
-                        disableRipple
-                        inputProps={{ "aria-labelledby": labelId }}
-                      />
-                    </ListItemIcon>
-                    <ListItemText id={labelId} primary={itemName} />
-                  </ListItemButton>
-                </ListItem>
-              );
-            })}
-          </List>
-        ))}
+                    {listName}
+                  </span>
+                }
+              />
+              {customNames.map((itemName, index) => {
+                const labelId = `checkbox-list-label-${index}`;
+
+                return (
+                  <ListItem key={index} disablePadding className="person-list-item">
+                    <ListItemButton
+                      role={undefined}
+                      onClick={handleToggle(listName, itemName)}
+                      dense
+                    >
+                      <ListItemIcon>
+                        <Checkbox
+                          edge="start"
+                          checked={checked[listName]?.includes(itemName) ?? false}
+                          tabIndex={-1}
+                          disableRipple
+                          inputProps={{ "aria-labelledby": labelId }}
+                        />
+                      </ListItemIcon>
+                      <ListItemText id={labelId} primary={itemName} />
+                    </ListItemButton>
+                  </ListItem>
+                );
+              })}
+            </List>
+          ))}
+        </div>
       </div>
       <div className="personal-attributes-container">
         <strong>Personal attributes:</strong>
