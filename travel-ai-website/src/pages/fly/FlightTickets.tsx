@@ -9,8 +9,12 @@ function FlightsComponent() {
     console.log('Clicked list:', item);
   };
 
+  if (!buttonClicked) {
+    return null; // Render nothing if the button hasn't been clicked yet
+  }
+
   return (
-    <div className={buttonClicked ? 'fixedBox' : 'fixedBox hidden'}>
+    <div className='fixedBox'>
       {sortedArray.map((item, index) => (
         <div key={index} onClick={() => handleListClick(item)} className='listContainer'>
           <List>
