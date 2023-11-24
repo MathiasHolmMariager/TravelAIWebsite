@@ -49,8 +49,12 @@ export default function HorizontalLinearStepper() {
   };
 
   const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    navigate(stepPaths[activeStep - 1]);
+    setActiveStep((prevActiveStep) => {
+      const newActiveStep = prevActiveStep - 1;
+      console.log("Navigating back to:", stepPaths[newActiveStep]);
+      navigate(stepPaths[newActiveStep]);
+      return newActiveStep;
+    });
   };
 
   const handleSkip = () => {

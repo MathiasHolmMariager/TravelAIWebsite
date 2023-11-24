@@ -1,20 +1,24 @@
 import "./Home.css";
+import { Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
-import NumberInput from "../../components/NumberPersons";
-import Calender from "../../components/Calender";
-import InputTest from "../../components/InputTest";
+const Home = () => {
+  const navigate = useNavigate();
 
-function AppString() {
+  const handleNextClick = () => {
+    localStorage.setItem("activeStep", "1");
+    navigate("/fly");
+  };
+
   return (
-    <div className="Page">
-      <div className="horizontal-row">
-        <InputTest />
-        <Calender />
-        <NumberInput />
-      </div>
+    <div className="container">
+      <Button className="button" onClick={handleNextClick}>
+        start your journey 
+      </Button>
     </div>
   );
-}
+};
 
-export default AppString;
+export default Home;
+
 
