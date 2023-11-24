@@ -10,8 +10,12 @@ function FlightsComponent() {
     localStorage.setItem('FLIGHT_PRICE', price);
   };
 
+  if (!buttonClicked) {
+    return null; // Render nothing if the button hasn't been clicked yet
+  }
+
   return (
-    <div className={buttonClicked ? 'fixedBox' : 'fixedBox hidden'}>
+    <div className='fixedBox'>
       {sortedArray.map((item, index) => (
         <div key={index} className='listContainer'>
           <List>

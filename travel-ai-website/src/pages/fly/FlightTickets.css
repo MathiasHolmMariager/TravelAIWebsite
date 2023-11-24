@@ -20,16 +20,14 @@
 
 .fixedBox {
   position: fixed;
-  top: 200px; /* Adjust as needed */
-  left: 50px; /* Adjust as needed */
-  width: auto; /* Adjust width as needed */
+  top: 250px; 
+  left: 50px; 
+  width: auto;
   background-color: #fff;
   border: 1px solid #ccc;
   padding: 20px;
-  max-height: 400px; /* Set a specific maximum height */
-  overflow-y: auto; /* Enable vertical scrolling */
-}
-
-.hidden{
-  display: none;
+  max-height: 600px; 
+  overflow-y: auto;
+  left: 50%;
+  transform: translateX(-50%);
 }

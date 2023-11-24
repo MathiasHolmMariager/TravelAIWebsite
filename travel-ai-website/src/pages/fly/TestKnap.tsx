@@ -1,13 +1,16 @@
-
+import React, { useState } from 'react';
+import { useMyContext } from './MyContext';
 import axios from 'axios';
 import { SERVER_PORT } from '../../Constants';
-import { useMyContext } from './MyContext';
+import loading_animation from '../../assets/loading_animation.gif';
 
 function MyComponent() {
   const { updateSortedArray, setButtonClicked, buttonClicked } = useMyContext();
+  const [isLoading, setIsLoading] = useState(false);
 
   const onClick = async () => {
     try {
+      setIsLoading(true);
       const result = (await axios.post(`${SERVER_PORT}/duffel`)).data.res;
       console.log(result);
 
@@ -26,17 +29,21 @@ function MyComponent() {
         airport_arriving_home: item.slices[1].destination.name,
       }));
 
-      // Update the sortedArray in the context and set buttonClicked to true
       updateSortedArray(sortedArray);
       setButtonClicked(true);
     } catch (error) {
       console.error('Error fetching data:', error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
     <div>
-      {!buttonClicked && <button onClick={onClick}>Click me to test</button>}
+      {!buttonClicked && !isLoading && (
+        <button onClick={onClick}>Click me to test</button>
+      )}
+      {isLoading && <img src={loading_animation} alt="Loading..." />}
     </div>
   );
 }
