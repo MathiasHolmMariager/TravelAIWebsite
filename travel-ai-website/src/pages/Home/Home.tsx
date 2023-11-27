@@ -6,8 +6,8 @@ const Home = () => {
   const navigate = useNavigate();
 
   const handleNextClick = () => {
-    localStorage.setItem("activeStep", "1");
-    navigate("/fly");
+    //localStorage.setItem("activeStep", "1");
+    navigate("/Fly");
   };
 
   return (

@@ -5,17 +5,25 @@ import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
-const stepPaths = ["/", "/fly", "/hotel", "/persons", "/oplevelser", "/overview"];
+const stepPaths = [
+  "/",
+  "/Fly",
+  "/Hotel",
+  "/persons",
+  "/oplevelser",
+  "/overview",
+];
+
 const stepNames = ["Home", "Fly", "Hotel", "Persons", "Oplevelser", "Overview"];
-
-const STORAGE_KEY = "activeStep";
+ 
+const STORAGE_KEY = "CURRENT_PAGE_STEP";
 
 export default function HorizontalLinearStepper() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [activeStep, setActiveStep] = React.useState(() => {
-    // Retrieve the activeStep from localStorage or default to 0
     const storedStep = localStorage.getItem(STORAGE_KEY);
     return storedStep ? parseInt(storedStep, 10) : 0;
   });
@@ -31,9 +39,7 @@ export default function HorizontalLinearStepper() {
 
   const handleNext = () => {
     if (activeStep === stepPaths.length - 1) {
-      // Handle the "Finish" scenario, e.g., perform any final actions
       console.log("Finish button clicked. Perform final actions.");
-      // Optionally, reset the stepper to the first step
       handleReset();
     } else {
       let newSkipped = skipped;
@@ -73,10 +79,30 @@ export default function HorizontalLinearStepper() {
 
   const handleReset = () => {
     setActiveStep(0);
+    localStorage.setItem(STORAGE_KEY, "0");
     navigate(stepPaths[0]);
   };
 
-  // Update localStorage whenever activeStep changes
+  const handleBeforeUnload = () => {
+    localStorage.setItem(STORAGE_KEY, "0");
+  };
+
+  React.useEffect(() => {
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
+
+  React.useEffect(() => {
+    const currentStep = stepPaths.indexOf(location.pathname);
+    console.log("Current Path:", location.pathname);
+    console.log("Step Paths:", stepPaths);
+    console.log("Current Step:", currentStep);
+    const isValidStep = currentStep !== -1 ? currentStep : 0;
+    setActiveStep(isValidStep);
+  }, [location.pathname, stepPaths]);
+
   React.useEffect(() => {
     localStorage.setItem(STORAGE_KEY, String(activeStep));
   }, [activeStep]);
@@ -117,23 +143,27 @@ export default function HorizontalLinearStepper() {
       ) : (
         <React.Fragment>
           <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
-            <Button
-              color="inherit"
-              disabled={activeStep === 0}
-              onClick={handleBack}
-              sx={{ mr: 1 }}
-            >
-              Back
-            </Button>
+            {activeStep !== 0 && (
+              <Button
+                color="inherit"
+                disabled={activeStep === 0}
+                onClick={handleBack}
+                sx={{ mr: 1 }}
+              >
+                Back
+              </Button>
+            )}
             <Box sx={{ flex: "1 1 auto" }} />
             {isStepOptional(activeStep) && (
               <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
                 Skip
               </Button>
             )}
+            {activeStep !== 0 && (
             <Button onClick={handleNext}>
               {activeStep === stepPaths.length - 1 ? "Finish" : "Next"}
             </Button>
+          )}
           </Box>
         </React.Fragment>
       )}

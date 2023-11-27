@@ -5,11 +5,14 @@ import {Outlet} from "react-router"
 
 function App() {
   return <>
-  <div className='NavBar'>
-    <HorizontalLinearStepper/>
+  <div className='Page'>
+    <div className='NavBar'>
+      <HorizontalLinearStepper/>
+    </div>
+    <div className='PageContent'>
+      <Outlet/>
+    </div>
   </div>
-
-  <Outlet/>
   </>
 }
 
