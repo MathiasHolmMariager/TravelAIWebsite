@@ -1,35 +1,39 @@
 import dayjs from "dayjs";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
+// Function to format the date to ISO 8601 format (YYYY-MM-DD)
+const formatDateISO8601 = (date: any) => date.format('YYYY-MM-DD');
+
 function Calender() {
-  // Check local storage for existing values
-  const storedDatesString = localStorage.getItem('DATE_VALUE');
-  const storedDates = storedDatesString ? JSON.parse(storedDatesString) : null;
-  const defaultFrom = dayjs();
-  const defaultTo = defaultFrom.add(1, 'day');
-
   // State to store selected dates
-  const [selectedDates, setSelectedDates] = useState({
-    from: storedDates ? dayjs(storedDates.from) : defaultFrom,
-    to: storedDates ? dayjs(storedDates.to) : defaultTo,
-  });
+  const [fromDate, setFromDate] = useState(dayjs());
+  const [toDate, setToDate] = useState(dayjs().add(1, 'day'));
 
-  // Function to handle date selection
-  const handleDateChange = (date: any, type: any) => {
-    setSelectedDates((prevDates) => {
-      const updatedDates = {
-        ...prevDates,
-        [type]: date,
-      };
+  // Check local storage for existing values on initial load
+  useEffect(() => {
+    const storedFromDate = localStorage.getItem('FROM_DATE');
+    const storedToDate = localStorage.getItem('TO_DATE');
 
-      localStorage.setItem('DATE_VALUE', JSON.stringify(updatedDates));
+    if (storedFromDate && storedToDate) {
+      setFromDate(dayjs(storedFromDate));
+      setToDate(dayjs(storedToDate));
+    }
+  }, []);
 
-      return updatedDates;
-    });
+  // Function to handle "from" date selection
+  const handleFromDateChange = (date: any) => {
+    setFromDate(date);
+    localStorage.setItem('FROM_DATE', formatDateISO8601(date));
+  };
+
+  // Function to handle "to" date selection
+  const handleToDateChange = (date: any) => {
+    setToDate(date);
+    localStorage.setItem('TO_DATE', formatDateISO8601(date));
   };
 
   return (
@@ -39,15 +43,15 @@ function Calender() {
           label="FROM"
           format="M/D/YYYY"
           slotProps={{ field: { shouldRespectLeadingZeros: true } }}
-          value={selectedDates.from}
-          onChange={(date) => handleDateChange(date, 'from')}
+          value={fromDate}
+          onChange={handleFromDateChange}
         />
         <DatePicker
           label="TO"
           format="M/D/YYYY"
           slotProps={{ field: { shouldRespectLeadingZeros: true } }}
-          value={selectedDates.to}
-          onChange={(date) => handleDateChange(date, 'to')}
+          value={toDate}
+          onChange={handleToDateChange}
         />
       </DemoContainer>
     </LocalizationProvider>
