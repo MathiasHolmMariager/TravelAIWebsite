@@ -11,7 +11,40 @@ function MyComponent() {
   const onClick = async () => {
     try {
       setIsLoading(true);
-      const result = (await axios.post(`${SERVER_PORT}/duffel`)).data.res;
+
+      const fromDate = localStorage.getItem('FROM_DATE');
+      const toDate = localStorage.getItem('TO_DATE');
+      const stringValueFrom = localStorage.getItem('STRING_VALUE_FROM');
+      const stringValueTo = localStorage.getItem('STRING_VALUE_TO');
+      const adults = localStorage.getItem('adults');
+      const kids = localStorage.getItem('kids');
+
+      const passengers = [];
+      for (let i = 0; i < parseInt(adults || '0'); i++) {
+        passengers.push({ type: 'adult' });
+      }
+      for (let i = 0; i < parseInt(kids || '0'); i++) {
+        passengers.push({ type: 'child' });
+      }
+
+      const params = {
+        slices: [
+          {
+            origin: stringValueFrom,
+            destination: stringValueTo,
+            departure_date: fromDate,
+          },
+          {
+            origin: stringValueTo,
+            destination: stringValueFrom,
+            departure_date: toDate,
+          },
+        ],
+        passengers: passengers,
+        cabin_class: 'economy',
+      };
+
+      const result = (await axios.post(`${SERVER_PORT}/duffel`, params)).data.res;
       console.log(result);
 
       const sortedArray = result.data.map((item: any) => ({

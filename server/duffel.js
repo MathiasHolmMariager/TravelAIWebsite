@@ -37,30 +37,20 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getDuffel = void 0;
+// duffel.ts - unchanged
 var api_1 = require("@duffel/api");
 var duffel = new api_1.Duffel({
     token: "duffel_test_SFvy4hsjdO6lNXXjM0iGhcE42JockQZPaOAVo5BBKSn"
 });
-function getDuffel() {
+function getDuffel(params) {
     return __awaiter(this, void 0, void 0, function () {
         var offerRequest, offers;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, duffel.offerRequests.create({
-                        slices: [
-                            {
-                                "origin": "NYC",
-                                "destination": "ATL",
-                                "departure_date": "2023-12-22",
-                            },
-                            {
-                                "origin": "ATL",
-                                "destination": "NYC",
-                                "departure_date": "2023-12-29"
-                            }
-                        ],
-                        "passengers": [{ "type": "adult" }, { "type": "adult" }, { "age": 1 }],
-                        "cabin_class": "economy",
+                        slices: params.slices,
+                        passengers: params.passengers,
+                        cabin_class: params.cabin_class,
                     })];
                 case 1:
                     offerRequest = _a.sent();
