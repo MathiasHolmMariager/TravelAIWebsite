@@ -76,7 +76,7 @@ function MyComponent() {
       {!buttonClicked && !isLoading && (
         <button onClick={onClick}>Search</button>
       )}
-      {isLoading && <img src={loading_animation} alt="Loading..." />}
+      {isLoading && <img src={loading_animation} alt="Loading..." width={"50px"} height={"50px"}/>}
     </div>
   );
 }

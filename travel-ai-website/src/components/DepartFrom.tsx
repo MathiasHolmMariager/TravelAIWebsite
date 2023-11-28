@@ -406,7 +406,6 @@ const DepartFromInput = () => {
               boxShadow: "0 6px 12px rgba(0, 0, 0, 0.3)", 
               maxHeight: "500px", 
               overflowY: "auto",
-              
             }}
           >
             <List>
