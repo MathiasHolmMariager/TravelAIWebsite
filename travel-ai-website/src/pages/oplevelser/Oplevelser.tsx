@@ -30,7 +30,6 @@ export default function ReturnInput() {
       if (assistantReply !== null) {
         setUserOutput(assistantReply);
       } else {
-        // Handle the case where assistantReply is null
       }
     }
   };

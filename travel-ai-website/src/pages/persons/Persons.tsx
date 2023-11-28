@@ -30,11 +30,8 @@ export default function CheckboxList() {
   const [checked, setChecked] = React.useState<{ [key: string]: string[] }>({});
 
   const listColors = [
-    "#ffd0d1", "#ffcccb", "#ffb4b5", "#ff9a9b", "#ff8081",
-    "#c4f2c5", "#c2f0c2", "#a8e7a9", "#8edf8f", "#74d677",
-    "#b5e6ff", "#a3ccf9", "#90b3f3", "#7d9bf1", "#6b83eb",
-    "#f1e89f", "#f0e68c", "#eedf6f", "#ebd63f", "#e8cc0f",
-  ];
+    "#ff5400", "#ff8e00", "#ffd200", "#81e650", "#00d267",
+    "#00c0ff", "#8b48fe", "#ca41fc", "#ff46fb"];
 
   const handleToggle = (listName: string, itemName: string) => () => {
     setChecked((prevChecked) => {
