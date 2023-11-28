@@ -7,7 +7,6 @@ function Hotel() {
     localStorage.getItem('AccommodationType') || null
   );
   const [city, setCity] = useState<string>(() => localStorage.getItem('city') || '');
-  const [country, setCountry] = useState<string>(() => localStorage.getItem('country') || '');
 
   const handleBoxClick = (boxNumber: number, boxName: string) => {
     setSelectedBox(boxNumber === selectedBox ? null : boxNumber);
@@ -20,23 +19,12 @@ function Hotel() {
     localStorage.setItem('city', newCity);
   };
 
-  const handleCountryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newCountry = event.target.value;
-    setCountry(newCountry);
-    localStorage.setItem('country', newCountry);
-  };
-
   useEffect(() => {
     const storedCity = localStorage.getItem('city');
-    const storedCountry = localStorage.getItem('country');
     const storedAccommodationType = localStorage.getItem('AccommodationType');
 
     if (storedCity !== null) {
       setCity(storedCity);
-    }
-
-    if (storedCountry !== null) {
-      setCountry(storedCountry);
     }
 
     if (storedAccommodationType !== null) {
@@ -77,12 +65,6 @@ function Hotel() {
         >
           Nature
         </div>
-      </div>
-      <div>
-        <label>
-          In which country are you staying?
-          <input type="text" value={country} onChange={handleCountryChange} />
-        </label>
       </div>
       <div>
         <label>
