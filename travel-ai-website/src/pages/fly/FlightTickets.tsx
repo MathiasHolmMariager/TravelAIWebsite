@@ -26,7 +26,7 @@ function FlightsComponent() {
                     Total price:<br />
                     {item.total_amount} {item.total_currency}
                   </p>
-                  <p>{item.owner_name}</p>
+                  <p className='owner'>{item.owner_name}</p>
                   <img className='imgCSS' src={item.owner_logo} alt="Owner Logo" />
                   <p>
                     Trip to destination: {item.departing_time_away.toLocaleDateString()}{' '}
@@ -40,7 +40,7 @@ function FlightsComponent() {
                     })}
                   </p>
                   <p>
-                    {item.airport_departing_away} - {item.airport_arriving_away}
+                    {item.airport_departing_away} ⟶ {item.airport_arriving_away}
                   </p>
                   <p>
                     Return trip: {item.departing_time_home.toLocaleDateString()}{' '}
@@ -54,15 +54,17 @@ function FlightsComponent() {
                     })}
                   </p>
                   <p>
-                    {item.airport_departing_home} - {item.airport_arriving_home}
+                    {item.airport_departing_home} ⟶ {item.airport_arriving_home}
                   </p>
-                  <Button
+                  <p className='save'>
+                    <Button
                     variant="contained"
                     color="primary"
                     onClick={() => handleSaveButtonClick(item.total_amount)}
                   >
                     Save flight
                   </Button>
+                  </p>                  
                 </ul>
               </ListItemText>
             </ListItem>

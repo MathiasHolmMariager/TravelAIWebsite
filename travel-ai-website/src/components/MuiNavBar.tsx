@@ -96,9 +96,6 @@ export default function HorizontalLinearStepper() {
 
   React.useEffect(() => {
     const currentStep = stepPaths.indexOf(location.pathname);
-    console.log("Current Path:", location.pathname);
-    console.log("Step Paths:", stepPaths);
-    console.log("Current Step:", currentStep);
     const isValidStep = currentStep !== -1 ? currentStep : 0;
     setActiveStep(isValidStep);
   }, [location.pathname, stepPaths]);

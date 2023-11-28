@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
 import { useMyContext } from './MyContext';
 import axios from 'axios';
 import { SERVER_PORT } from '../../Constants';
 import loading_animation from '../../assets/loading_animation.gif';
+import { useState } from 'react';
 
 function MyComponent() {
   const { updateSortedArray, setButtonClicked, buttonClicked } = useMyContext();
@@ -74,7 +74,7 @@ function MyComponent() {
   return (
     <div>
       {!buttonClicked && !isLoading && (
-        <button onClick={onClick}>Click me to test</button>
+        <button onClick={onClick}>Search</button>
       )}
       {isLoading && <img src={loading_animation} alt="Loading..." />}
     </div>

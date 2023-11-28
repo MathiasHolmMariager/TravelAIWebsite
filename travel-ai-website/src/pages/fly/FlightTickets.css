@@ -2,7 +2,8 @@
   background-color: lightgray;
   border-radius: 5px;
   margin-bottom: 10px;
-  width: 700px;
+  width: 1000px;
+  height: 100%;
   position: relative;
 }
   
@@ -15,6 +16,12 @@
   position: absolute;
   right: 40px;
   top: 62.5px;
+  font-size: 20px;
+}
+.save {
+  position: absolute;
+  right: 40px;
+  top: 150px;
   font-size: 20px;
 }
 
@@ -30,4 +37,14 @@
   overflow-y: auto;
   left: 50%;
   transform: translateX(-50%);
+}
+
+.flightInfo {
+  position: relative;
+}
+
+.buttonContainer {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
 }
