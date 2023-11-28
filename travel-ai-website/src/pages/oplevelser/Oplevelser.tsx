@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import { OpenAItest } from '../../OpenAI';
 import './Oplevelser.css';
+import loading_animation from '../../assets/loading_animation.gif';
 
 interface Message {
   role: 'User' | 'Assistant';
@@ -16,6 +17,7 @@ export default function ReturnInput() {
   const [userInput, setUserInput] = React.useState<string>('');
   const [userOutput, setUserOutput] = React.useState<string>('');
   const [conversationHistory, setConversationHistory] = React.useState<Message[]>([]);
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUserInput(event.target.value);
@@ -24,13 +26,18 @@ export default function ReturnInput() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (userInput) {
-      const { assistantReply, conversationHistory: updatedHistory } = await OpenAItest(userInput, conversationHistory);
-      setConversationHistory(updatedHistory);
+      setIsLoading(true); // Set loading state to true before API call
+      try {
+        const { assistantReply, conversationHistory: updatedHistory } = await OpenAItest(userInput, conversationHistory);
+        setConversationHistory(updatedHistory);
 
-      if (assistantReply !== null) {
-        setUserOutput(assistantReply);
-      } else {
+        if (assistantReply !== null) {
+          setUserOutput(assistantReply);
+        } else {
+        }
+      } catch (error) {
       }
+      setIsLoading(false); // Set loading state to false after API call response or error
     }
   };
 
@@ -75,6 +82,7 @@ export default function ReturnInput() {
               Submit
             </Button>
           </form>
+          {isLoading && <img src={loading_animation} alt="Loading..." width={"50px"} height={"50px"}/>}
         </div>
       </Box>
     </Container>
