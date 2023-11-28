@@ -5,9 +5,10 @@ import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import { OpenAItest } from '../../OpenAI';
+import './Oplevelser.css';
 
 interface Message {
-  role: string;
+  role: 'User' | 'Assistant';
   content: string;
 }
 
@@ -25,20 +26,17 @@ export default function ReturnInput() {
     if (userInput) {
       const { assistantReply, conversationHistory: updatedHistory } = await OpenAItest(userInput, conversationHistory);
       setConversationHistory(updatedHistory);
-  
-      // Check if the response is not null before setting the state
+
       if (assistantReply !== null) {
         setUserOutput(assistantReply);
       } else {
-        // Handle the case when the response is null
-        // You can set a default value or perform other actions as needed
+        // Handle the case where assistantReply is null
       }
     }
   };
-  
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="md">
       <CssBaseline />
       <Box
         sx={{
@@ -48,30 +46,37 @@ export default function ReturnInput() {
           alignItems: 'center',
         }}
       >
-        <form onSubmit={handleSubmit}>
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="UserInput"
-            label="UserInput"
-            name="UserInput"
-            autoComplete="UserInput"
-            autoFocus
-            value={userInput}
-            onChange={handleInputChange}
-          />
-          <Button type="submit" fullWidth variant="contained">
-            Submit
-          </Button>
-        </form>
+        <div className="chat-container">
+          <div className="conversation-history">
+            {conversationHistory.map((message, index) => (
+              <div
+                key={index}
+                className={index % 2 === 0 ? 'user-message' : 'assistant-message'}
+              >
+                {message.content}
+              </div>
+            ))}
+          </div>
 
-        <textarea
-          readOnly
-          id="UserOutput"
-          value={userOutput}
-          style={{ resize: 'none', height: '250px', width: '100%', marginTop: '10px' }}
-        />
+          <form onSubmit={handleSubmit} className="user-input-form">
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="UserInput"
+              label="UserInput"
+              name="UserInput"
+              autoComplete="UserInput"
+              autoFocus
+              value={userInput}
+              onChange={handleInputChange}
+              className="user-input"
+            />
+            <Button type="submit" variant="contained" className="submit-button">
+              Submit
+            </Button>
+          </form>
+        </div>
       </Box>
     </Container>
   );

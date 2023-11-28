@@ -8,6 +8,8 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 // Function to format the date to ISO 8601 format (YYYY-MM-DD)
 const formatDateISO8601 = (date: any) => date.format('YYYY-MM-DD');
 
+// ... (existing imports and functions)
+
 function Calender() {
   // State to store selected dates
   const [fromDate, setFromDate] = useState(dayjs());
@@ -25,15 +27,30 @@ function Calender() {
   }, []);
 
   // Function to handle "from" date selection
-  const handleFromDateChange = (date: any) => {
-    setFromDate(date);
-    localStorage.setItem('FROM_DATE', formatDateISO8601(date));
+  const handleFromDateChange = (date: string | number | dayjs.Dayjs | Date | null | undefined) => {
+    const selectedDate = dayjs(date);
+
+    // Check if selected "from" date is after current "to" date
+    if (selectedDate.isAfter(toDate)) {
+      setToDate(selectedDate.add(1, 'day')); // Set "to" date to the next day
+    }
+
+    setFromDate(selectedDate);
+    localStorage.setItem('FROM_DATE', formatDateISO8601(selectedDate));
   };
 
   // Function to handle "to" date selection
-  const handleToDateChange = (date: any) => {
-    setToDate(date);
-    localStorage.setItem('TO_DATE', formatDateISO8601(date));
+  const handleToDateChange = (date: string | number | dayjs.Dayjs | Date | null | undefined) => {
+    const selectedDate = dayjs(date);
+
+    // Check if selected "to" date is before current "from" date
+    if (selectedDate.isBefore(fromDate)) {
+      setFromDate(selectedDate); // Set "from" date to the selected "to" date
+      localStorage.setItem('FROM_DATE', formatDateISO8601(selectedDate));
+    }
+
+    setToDate(selectedDate);
+    localStorage.setItem('TO_DATE', formatDateISO8601(selectedDate));
   };
 
   return (
@@ -51,6 +68,7 @@ function Calender() {
           format="M/D/YYYY"
           slotProps={{ field: { shouldRespectLeadingZeros: true } }}
           value={toDate}
+          minDate={fromDate.add(1, 'day')} // Set minimum "to" date as the day after "from" date
           onChange={handleToDateChange}
         />
       </DemoContainer>

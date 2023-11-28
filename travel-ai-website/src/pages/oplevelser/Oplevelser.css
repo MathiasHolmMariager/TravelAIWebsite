@@ -1,67 +1,42 @@
-#root {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 2rem;
-    text-align: center;
-  }
-  
-  .logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-    transition: filter 300ms;
-  }
-  .logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-  }
-  .logo.react:hover {
-    filter: drop-shadow(0 0 2em #61dafbaa);
-  }
-  
-  @keyframes logo-spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  
-  @media (prefers-reduced-motion: no-preference) {
-    a:nth-of-type(2) .logo {
-      animation: logo-spin infinite 20s linear;
-    }
-  }
-  
-  .card {
-    padding: 2em;
-  }
-  
-  .read-the-docs {
-    color: #888;
-  }
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 1000px;
+  margin: 0 auto;
+}
 
-  .Page-mangement {
-    width: 260px;
-    height: 100px;
-    background-color: #313131;
-    display: flex;
-    flex-direction: row;
-  }
-  .Page-mangement a {
-    color: white;
-    text-decoration: none; 
-    width: 130px; 
-    height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+.conversation-history {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+  max-height: 300px;
+  overflow-y: auto;
+}
 
-   .Page-mangement a:hover {
-    background-color: rgb(75, 74, 74);  
-  }
-  
+.user-message {
+  background-color: #ffa0aa;
+  padding: 8px;
+  margin-bottom: 4px;
+  border-radius: 4px;
+}
 
+.assistant-message {
+  background-color: #a6d7ff;
+  padding: 8px;
+  margin-bottom: 4px;
+  border-radius: 4px;
+}
 
-  
+.user-input-form {
+  display: flex;
+}
+
+.user-input {
+  flex: 1;
+  margin-right: 8px;
+}
+
+.submit-button {
+  width: 100px;
+}

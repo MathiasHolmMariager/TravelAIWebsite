@@ -30,9 +30,7 @@
   width: 80%;
   height: 100%;
   margin: 50px auto; 
-  display: flex;
   justify-content: center;
-  overflow: hidden; 
+  overflow: hidden;
   background-color: rgb(235, 235, 235);
 }
-
