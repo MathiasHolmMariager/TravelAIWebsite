@@ -35,19 +35,23 @@ const NumberInput: React.FC = () => {
   // Save values to local storage whenever adults or kids change
   useEffect(() => {
     localStorage.setItem('adults', String(adults));
-  }, [adults]);
-
-  useEffect(() => {
     localStorage.setItem('kids', String(kids));
-  }, [kids]);
+  }, [adults, kids]);
+
+  const total = adults + kids;
+  const shouldHideButtons = total >= 9;
 
   return (
     <Box display="flex" flexDirection="row">
       <Box display="flex" alignItems="center">
-      <Button variant="outlined" onClick={handleAdultsDecrement}>
+        <Button
+          variant="outlined"
+          onClick={handleAdultsDecrement}
+          
+        >
           -
         </Button>
-        
+
         <TextField
           margin="normal"
           label="Adults"
@@ -56,15 +60,25 @@ const NumberInput: React.FC = () => {
           value={adults}
           onChange={(e) => setAdults(Math.max(parseInt(e.target.value) || 0, 0))}
         />
-        <Button variant="outlined" onClick={handleAdultsIncrement}>
+
+        <Button
+          variant="outlined"
+          onClick={handleAdultsIncrement}
+          disabled={shouldHideButtons}
+        >
           +
         </Button>
       </Box>
 
       <Box display="flex" alignItems="center">
-        <Button variant="outlined" onClick={handleKidsDecrement}>
+        <Button
+          variant="outlined"
+          onClick={handleKidsDecrement}
+          
+        >
           -
         </Button>
+
         <TextField
           margin="normal"
           label="Kids"
@@ -73,7 +87,12 @@ const NumberInput: React.FC = () => {
           value={kids}
           onChange={(e) => setKids(Math.max(parseInt(e.target.value) || 0, 0))}
         />
-        <Button variant="outlined" onClick={handleKidsIncrement}>
+
+        <Button
+          variant="outlined"
+          onClick={handleKidsIncrement}
+          disabled={shouldHideButtons}
+        >
           +
         </Button>
       </Box>
