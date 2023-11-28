@@ -70,13 +70,13 @@ export default function ReturnInput() {
               required
               fullWidth
               id="UserInput"
-              label="UserInput"
               name="UserInput"
               autoComplete="UserInput"
               autoFocus
               value={userInput}
               onChange={handleInputChange}
               className="user-input"
+              InputProps={{placeholder: 'Ask further questions here'}}
             />
             <Button type="submit" variant="contained" className="submit-button">
               Submit

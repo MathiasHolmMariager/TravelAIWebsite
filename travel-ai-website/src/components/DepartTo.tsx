@@ -385,12 +385,12 @@ const DepartToInput = () => {
           margin="normal"
           required
           id="Depart To"
-          label="Depart to"
           name="Depart to"
           autoComplete="off"
           value={inputValue}
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
+          InputProps={{placeholder: 'Depart to'}}
         />
         {suggestions.length > 0 && (
           <div
