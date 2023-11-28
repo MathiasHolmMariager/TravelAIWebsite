@@ -26,7 +26,6 @@ function Hotel() {
     localStorage.setItem('country', newCountry);
   };
 
-  // useEffect to update state from local storage on mount
   useEffect(() => {
     const storedCity = localStorage.getItem('city');
     const storedCountry = localStorage.getItem('country');
@@ -45,7 +44,6 @@ function Hotel() {
     }
   }, []);
 
-  // useEffect to save selected box name to local storage when it changes
   useEffect(() => {
     if (selectedBox !== null && AccommodationType !== null) {
       localStorage.setItem('AccommodationType', AccommodationType);
@@ -53,7 +51,7 @@ function Hotel() {
   }, [selectedBox, AccommodationType]);
 
   return (
-    <div>
+    <div className="wrapper">
       <div>
         <div
           className={`box ${selectedBox === 1 ? 'selected' : ''}`}
@@ -82,13 +80,13 @@ function Hotel() {
       </div>
       <div>
         <label>
-          Country:
+          In which country are you staying?
           <input type="text" value={country} onChange={handleCountryChange} />
         </label>
       </div>
       <div>
         <label>
-          City:
+          In which city are you staying?
           <input type="text" value={city} onChange={handleCityChange} />
         </label>
       </div>

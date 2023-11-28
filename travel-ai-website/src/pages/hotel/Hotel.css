@@ -1,3 +1,7 @@
+.wrapper {
+  text-align: center;
+}
+
 .box {
   width: 200px;
   height: 100px;
