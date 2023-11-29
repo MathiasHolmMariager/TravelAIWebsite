@@ -2,12 +2,10 @@
 
 .horizontal-row {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   position: relative; 
   top: 0px;
-  left: 1%;
-  transform: translateX(-1%);
   width: auto;
   background-color: aliceblue;
   z-index: 3;

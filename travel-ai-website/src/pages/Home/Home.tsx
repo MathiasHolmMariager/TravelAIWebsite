@@ -11,7 +11,7 @@ const Home = () => {
   };
 
   return (
-    <div className="container">
+    <div className="HomePage">
       <Button className="button" onClick={handleNextClick}>
         start your journey 
       </Button>
