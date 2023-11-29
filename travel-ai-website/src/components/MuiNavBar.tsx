@@ -30,7 +30,7 @@ export default function HorizontalLinearStepper() {
   const [skipped, setSkipped] = React.useState(new Set<number>());
 
   const isStepOptional = (step: number) => {
-    return 
+    return false
   };
 
   const isStepSkipped = (step: number) => {
