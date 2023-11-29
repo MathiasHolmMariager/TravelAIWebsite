@@ -41,6 +41,15 @@ function Hotel() {
   return (
     <div className="wrapper">
       <div>
+        <label>
+          In which city are you staying?
+          <input type="text" value={city} onChange={handleCityChange} />
+        </label>
+      </div>
+      <div style={{ padding: '25px' }}>
+        <label>
+          Which type of accommodation are you going to be living in?
+        </label>
         <div
           className={`box ${selectedBox === 1 ? 'selected' : ''}`}
           onClick={() => handleBoxClick(1, 'Hotel')}
@@ -65,12 +74,6 @@ function Hotel() {
         >
           Nature
         </div>
-      </div>
-      <div>
-        <label>
-          In which city are you staying?
-          <input type="text" value={city} onChange={handleCityChange} />
-        </label>
       </div>
     </div>
   );

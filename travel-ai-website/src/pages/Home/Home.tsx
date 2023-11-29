@@ -11,14 +11,12 @@ const Home = () => {
   };
 
   return (
-    <div className="HomePage">
-      <Button className="button" onClick={handleNextClick}>
-        start your journey 
+    <div className="container">
+      <Button className="button" onClick={handleNextClick}  sx={{fontSize: 50, fontWeight: 'bold', color: 'white',}}>
+        Start your journey 
       </Button>
     </div>
   );
 };
 
 export default Home;
-
-

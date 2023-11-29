@@ -26,7 +26,7 @@ export default function ReturnInput() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (userInput) {
-      setIsLoading(true); // Set loading state to true before API call
+      setIsLoading(true);
       try {
         const { assistantReply, conversationHistory: updatedHistory } = await OpenAItest(userInput, conversationHistory);
         setConversationHistory(updatedHistory);
@@ -37,7 +37,7 @@ export default function ReturnInput() {
         }
       } catch (error) {
       }
-      setIsLoading(false); // Set loading state to false after API call response or error
+      setIsLoading(false);
     }
   };
 
