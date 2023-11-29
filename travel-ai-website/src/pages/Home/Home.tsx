@@ -1,5 +1,6 @@
 import "./Home.css";
 import { Button } from "@mui/material";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {
@@ -9,6 +10,20 @@ const Home = () => {
     //localStorage.setItem("activeStep", "1");
     navigate("/Fly");
   };
+
+  useEffect(() => {
+    const handlePageLoad = () => {
+      const adults = parseInt(localStorage.getItem('adults') ?? '0', 10);
+      const kids = parseInt(localStorage.getItem('kids') ?? '0', 10);
+      if (adults + kids === 0) {
+        localStorage.setItem('adults', '1');
+      }
+  
+    };
+  
+    handlePageLoad();
+  }, []);
+
 
   return (
     <div className="container">
@@ -27,3 +42,4 @@ const Home = () => {
 };
 
 export default Home;
+
