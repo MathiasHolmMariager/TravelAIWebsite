@@ -63,6 +63,7 @@ const NumberInput: React.FC = () => {
           id="adults-input"
           value={adults}
           onChange={(e) => setAdults(Math.max(parseInt(e.target.value) || 0, 0))}
+          InputProps={{ readOnly: true }}
           style={{ width: '80px', textAlign: 'center' }}
         />
   
@@ -92,6 +93,7 @@ const NumberInput: React.FC = () => {
           id="kids-input"
           value={kids}
           onChange={(e) => setKids(Math.max(parseInt(e.target.value) || 0, 0))}
+          InputProps={{ readOnly: true }}
           style={{ width: '80px', textAlign: 'center' }}
         />
   

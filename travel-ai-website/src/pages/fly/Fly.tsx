@@ -6,7 +6,17 @@ import Calender from '../../components/Calender'
 import NumberInput from '../../components/NumberPersons'
 import DepartFromInput from '../../components/DepartFrom'
 import DepartToInput from '../../components/DepartTo'
-import { useEffect } from 'react'
+import { useEffect} from 'react'
+
+function formatDateISO8601(selectedDate: any): string {
+  // Example implementation, adjust it based on your requirements
+  const year = selectedDate.getFullYear();
+  const month = (selectedDate.getMonth() + 1).toString().padStart(2, '0');
+  const day = selectedDate.getDate().toString().padStart(2, '0');
+  
+  return `${year}-${month}-${day}`;
+}
+
 
 function Fly() {
 
@@ -18,10 +28,25 @@ function Fly() {
       if (adults + kids === 0) {
         localStorage.setItem('adults', '1');
       }
+  
+      const storedFromDate = localStorage.getItem('FROM_DATE');
+      if (storedFromDate === null || storedFromDate === undefined) {
+        const currentDate = new Date();
+        const formattedDate = formatDateISO8601(currentDate);
+        localStorage.setItem('FROM_DATE', formattedDate);
+      }
+
+      const storedToDate = localStorage.getItem('TO_DATE');
+      if (storedToDate === null || storedToDate === undefined) {
+        const currentDate = new Date();
+        currentDate.setDate(currentDate.getDate() + 1); 
+        const formattedDate = formatDateISO8601(currentDate);
+        localStorage.setItem('TO_DATE', formattedDate);
+      }
     };
+  
     handlePageLoad();
   }, []);
-
 
   return ( 
     <div className='flyPage'>
@@ -42,3 +67,5 @@ function Fly() {
 }
 
 export default Fly
+
+
