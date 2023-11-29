@@ -15,11 +15,11 @@ function Overview() {
     return data !== null ? data : '';
   });
   const [stringValue4] = useState(() => {
-    const data = window.localStorage.getItem('ADULTS');
+    const data = window.localStorage.getItem('adults');
     return data !== null ? data : '';
   });
   const [stringValue3] = useState(() => {
-    const data = window.localStorage.getItem('KIDS');
+    const data = window.localStorage.getItem('kids');
     return data !== null ? data : '';
   });
   const [stringValue5] = useState(() => {
