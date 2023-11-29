@@ -42,7 +42,7 @@ export default function ReturnInput() {
     }
   };
 
-  React.useEffect(() => {
+  /*React.useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
       try {
@@ -61,7 +61,7 @@ export default function ReturnInput() {
     };
 
     fetchData();
-  }, []); // Empty dependency array to run only on component mount
+  }, []); // Empty dependency array to run only on component mount*/
 
   return (
     <Container component="main" maxWidth="md">
