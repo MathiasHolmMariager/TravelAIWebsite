@@ -5,8 +5,9 @@ import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import { OpenAItest } from '../../OpenAI';
-import './Oplevelser.css';
 import loading_animation from '../../assets/loading_animation.gif';
+import { fullPrompt } from '../../TripPrompt/FullPrompt';
+import './Oplevelser.css';
 
 interface Message {
   role: 'User' | 'Assistant';
@@ -26,7 +27,7 @@ export default function ReturnInput() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (userInput) {
-      setIsLoading(true); // Set loading state to true before API call
+      setIsLoading(true);
       try {
         const { assistantReply, conversationHistory: updatedHistory } = await OpenAItest(userInput, conversationHistory);
         setConversationHistory(updatedHistory);
@@ -37,9 +38,30 @@ export default function ReturnInput() {
         }
       } catch (error) {
       }
-      setIsLoading(false); // Set loading state to false after API call response or error
+      setIsLoading(false);
     }
   };
+
+  React.useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+      try {
+        const { assistantReply, conversationHistory: updatedHistory } = await OpenAItest(fullPrompt);
+        setConversationHistory(updatedHistory);
+
+        if (assistantReply !== null) {
+          setUserOutput(assistantReply);
+        } else {
+          setUserOutput('No response');
+        }
+      } catch (error) {
+        setUserOutput('Error occurred');
+      }
+      setIsLoading(false);
+    };
+
+    fetchData();
+  }, []); // Empty dependency array to run only on component mount
 
   return (
     <Container component="main" maxWidth="md">
@@ -76,13 +98,13 @@ export default function ReturnInput() {
               value={userInput}
               onChange={handleInputChange}
               className="user-input"
-              InputProps={{placeholder: 'Ask further questions here'}}
+              InputProps={{ placeholder: 'Ask further questions here' }}
             />
             <Button type="submit" variant="contained" className="submit-button">
               Submit
             </Button>
           </form>
-          {isLoading && <img src={loading_animation} alt="Loading..." width={"50px"} height={"50px"}/>}
+          {isLoading && <img src={loading_animation} alt="Loading..." width={'50px'} height={'50px'} />}
         </div>
       </Box>
     </Container>

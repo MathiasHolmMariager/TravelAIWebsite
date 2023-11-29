@@ -10,28 +10,49 @@ import "./Persons.css";
 const customNames = ["Art", "Culture", "Food", "History", "Nature", "Sport"];
 
 export default function CheckboxList() {
-  const numberOfAdults = localStorage.getItem("adults") || 0;
-  const numberOfKids = localStorage.getItem("kids") || 0;
-
-  const generateListNames = () => {
-    const adultsArray = Array.from(
-      { length: Number(numberOfAdults) },
-      (_, index) => `Adult ${index + 1}`
-    );
-    const kidsArray = Array.from(
-      { length: Number(numberOfKids) },
-      (_, index) => `Kid ${index + 1}`
-    );
-    return [...adultsArray, ...kidsArray];
-  };
-
-  const listNames = generateListNames();
-
   const [checked, setChecked] = React.useState<{ [key: string]: string[] }>({});
+  const [listNames, setListNames] = React.useState<string[]>([]);
+
+  React.useEffect(() => {
+    const numberOfAdults = localStorage.getItem("adults") || "0";
+    const numberOfKids = localStorage.getItem("kids") || "0";
+
+    const generateListNames = (): string[] => {
+      const adultsArray = Array.from(
+        { length: Number(numberOfAdults) },
+        (_, index) => `Adult ${index + 1}`
+      );
+      const kidsArray = Array.from(
+        { length: Number(numberOfKids) },
+        (_, index) => `Kid ${index + 1}`
+      );
+      return [...adultsArray, ...kidsArray];
+    };
+
+    const names = generateListNames();
+    setListNames(names);
+
+    const storedChecked: { [key: string]: string[] } = {};
+    names.forEach((listName) => {
+      const stored = localStorage.getItem(listName);
+      if (stored) {
+        storedChecked[listName] = JSON.parse(stored);
+      }
+    });
+
+    setChecked((prevChecked) => {
+      // Compare if the current state is different from the new state
+      if (JSON.stringify(prevChecked) !== JSON.stringify(storedChecked)) {
+        return storedChecked;
+      }
+      return prevChecked;
+    });
+  }, []);
 
   const listColors = [
     "#ff5400", "#ff8e00", "#ffd200", "#81e650", "#00d267",
-    "#00c0ff", "#8b48fe", "#ca41fc", "#ff46fb"];
+    "#00c0ff", "#8b48fe", "#ca41fc", "#ff46fb"
+  ];
 
   const handleToggle = (listName: string, itemName: string) => () => {
     setChecked((prevChecked) => {
@@ -40,14 +61,21 @@ export default function CheckboxList() {
       if (!newChecked[listName]) {
         newChecked[listName] = [itemName];
       } else {
-        if (newChecked[listName].includes(itemName)) {
-          newChecked[listName] = newChecked[listName].filter(
-            (name) => name !== itemName
-          );
+        const currentIndex = newChecked[listName].indexOf(itemName);
+        const newCheckedItems = [...newChecked[listName]];
+
+        if (currentIndex === -1) {
+          newCheckedItems.push(itemName);
         } else {
-          newChecked[listName].push(itemName);
+          newCheckedItems.splice(currentIndex, 1);
         }
+
+        newChecked[listName] = newCheckedItems;
       }
+
+      // Update local storage here
+      const updatedLocalStorage = { ...newChecked };
+      localStorage.setItem(listName, JSON.stringify(updatedLocalStorage[listName]));
 
       return newChecked;
     });
