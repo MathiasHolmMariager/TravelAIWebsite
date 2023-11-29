@@ -87,6 +87,19 @@ const DepartToInput = () => {
   };
 
   useEffect(() => {
+
+    const storedValue = localStorage.getItem("STRING_VALUE_TO");
+    if (storedValue) {
+      const matchingAirport = airportDataEU.find(
+        (airport) => airport.code === storedValue
+      );
+
+      if (matchingAirport) {
+        setInputValue(`${matchingAirport.code}, ${matchingAirport.city}`);
+      }
+    }
+
+
     const handleDocumentMouseDown = (e: MouseEvent) => {
       if (
         (containerRef.current && containerRef.current.contains(e.target as Node)) ||
