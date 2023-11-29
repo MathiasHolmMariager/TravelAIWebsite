@@ -12,7 +12,14 @@ const Home = () => {
 
   return (
     <div className="container">
-      <Button className="button" onClick={handleNextClick}  sx={{fontSize: 50, fontWeight: 'bold', color: 'white',}}>
+      <Button
+        className="button"
+        onClick={handleNextClick}
+        sx={{
+          fontSize: 50,
+          fontWeight: 'bold',
+          color: 'white',
+          '&:hover': {border: '5px solid #ffffff',}}}>
         Start your journey 
       </Button>
     </div>

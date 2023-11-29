@@ -1,7 +1,6 @@
 import './Overview.css'
 import { useState } from "react";
 
-
 function Overview() {
   const [stringValue0] = useState(() => {
     const data = window.localStorage.getItem('TO_DATE');
@@ -15,12 +14,12 @@ function Overview() {
     const data = window.localStorage.getItem('FLIGHT_PRICE');
     return data !== null ? data : '';
   });
-  const [stringValue3] = useState(() => {
-    const data = window.localStorage.getItem('KIDS');
-    return data !== null ? data : '';
-  });
   const [stringValue4] = useState(() => {
     const data = window.localStorage.getItem('ADULTS');
+    return data !== null ? data : '';
+  });
+  const [stringValue3] = useState(() => {
+    const data = window.localStorage.getItem('KIDS');
     return data !== null ? data : '';
   });
   const [stringValue5] = useState(() => {
@@ -42,18 +41,17 @@ function Overview() {
         <input type="text" defaultValue={stringValue2} />
       </div>
       <div className='kids'>
-        Kids:
+        Adults:
         <input type="text" defaultValue={stringValue3} />
       </div>
       <div className='adults'>
-        Adults:
+        Kids:
         <input type="text" defaultValue={stringValue4} />
       </div>
       <div className='accom'>
-        Accommodation Type:
+        Accommodation type:
         <input type="text" defaultValue={stringValue5} />
       </div>
-      
     </div>
   )
 }
