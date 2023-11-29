@@ -56,21 +56,27 @@ function Calender() {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DemoContainer components={['DatePicker']}>
-        <DatePicker
-          label="FROM"
-          format="M/D/YYYY"
-          slotProps={{ field: { shouldRespectLeadingZeros: true } }}
-          value={fromDate}
-          onChange={handleFromDateChange}
-        />
-        <DatePicker
-          label="TO"
-          format="M/D/YYYY"
-          slotProps={{ field: { shouldRespectLeadingZeros: true } }}
-          value={toDate}
-          minDate={fromDate.add(1, 'day')} // Set minimum "to" date as the day after "from" date
-          onChange={handleToDateChange}
-        />
+        <div style={{ margin: '0 10px', width: '150px' }}>
+          <DatePicker
+            label="FROM"
+            format="M/D/YYYY"
+            slotProps={{ field: { shouldRespectLeadingZeros: true } }}
+            value={fromDate}
+            onChange={handleFromDateChange}
+            className="datePickerContainer"
+          />
+        </div>
+        <div style={{ margin: '0 10px', width: '150px'}}>
+          <DatePicker
+            label="TO"
+            format="M/D/YYYY"
+            slotProps={{ field: { shouldRespectLeadingZeros: true } }}
+            value={toDate}
+            minDate={fromDate.add(1, 'day')}
+            onChange={handleToDateChange}
+            className="datePickerContainer"
+          />
+        </div>
       </DemoContainer>
     </LocalizationProvider>
   );
