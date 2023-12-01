@@ -36,13 +36,11 @@ function Hotel() {
     const storedToDate = localStorage.getItem('TO_DATE');
     const storedNumAdults = parseInt(localStorage.getItem('adults') || '0', 10);
     const storedNumKids = parseInt(localStorage.getItem('kids') || '0', 10);
-    const storedDepartToCity = localStorage.getItem('DEPART_TO_CITY'); // Retrieve DEPART_TO_CITY
+
 
     if (storedCity !== null) {
       setCity(storedCity);
-    } else if (storedDepartToCity !== null) {
-      setCity(storedDepartToCity); // Use DEPART_TO_CITY as the default value
-    }
+    } 
 
     if (storedAccommodationType !== null) {
       setAccommodationType(storedAccommodationType);

@@ -5,11 +5,11 @@
   margin-bottom: 10px;
   max-height: 500px;
   overflow-y: auto;
-  background-color: rgba(35, 102, 4, 0.3);
+  background-color: rgba(255, 253, 253, 0.8);
 }
 
 .user-message {
-  background-color: rgb(66, 224, 129);
+  background-color: rgb(209, 235, 198);
   padding: 8px;
   margin-bottom: 4px;
   border-radius: 4px;
