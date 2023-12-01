@@ -3,10 +3,20 @@ import './Hotel.css';
 
 function Hotel() {
   const [selectedBox, setSelectedBox] = useState<number | null>(null);
-  const [AccommodationType, setAccommodationType] = useState<string | null>(() =>
+  const [accommodationType, setAccommodationType] = useState<string | null>(() =>
     localStorage.getItem('AccommodationType') || null
   );
-  const [city, setCity] = useState<string>(() => localStorage.getItem('city') || '');
+  const [city, setCity] = useState<string>(
+    () => localStorage.getItem('DEPART_TO_CITY') || ''
+  );
+  const [fromDate, setFromDate] = useState<string>(() => localStorage.getItem('FROM_DATE') || '');
+  const [toDate, setToDate] = useState<string>(() => localStorage.getItem('TO_DATE') || '');
+  const [numAdults, setNumAdults] = useState<number>(
+    () => parseInt(localStorage.getItem('adults') || '0', 10)
+  );
+  const [numKids, setNumKids] = useState<number>(
+    () => parseInt(localStorage.getItem('kids') || '0', 10)
+  );
 
   const handleBoxClick = (boxNumber: number, boxName: string) => {
     setSelectedBox(boxNumber === selectedBox ? null : boxNumber);
@@ -22,31 +32,61 @@ function Hotel() {
   useEffect(() => {
     const storedCity = localStorage.getItem('city');
     const storedAccommodationType = localStorage.getItem('AccommodationType');
+    const storedFromDate = localStorage.getItem('FROM_DATE');
+    const storedToDate = localStorage.getItem('TO_DATE');
+    const storedNumAdults = parseInt(localStorage.getItem('adults') || '0', 10);
+    const storedNumKids = parseInt(localStorage.getItem('kids') || '0', 10);
+    const storedDepartToCity = localStorage.getItem('DEPART_TO_CITY'); // Retrieve DEPART_TO_CITY
 
     if (storedCity !== null) {
       setCity(storedCity);
+    } else if (storedDepartToCity !== null) {
+      setCity(storedDepartToCity); // Use DEPART_TO_CITY as the default value
     }
 
     if (storedAccommodationType !== null) {
       setAccommodationType(storedAccommodationType);
     }
+
+    if (storedFromDate !== null) {
+      setFromDate(storedFromDate);
+    }
+
+    if (storedToDate !== null) {
+      setToDate(storedToDate);
+    }
+
+    if (!isNaN(storedNumAdults)) {
+      setNumAdults(storedNumAdults);
+    }
+
+    if (!isNaN(storedNumKids)) {
+      setNumKids(storedNumKids);
+    }
   }, []);
 
   useEffect(() => {
-    if (selectedBox !== null && AccommodationType !== null) {
-      localStorage.setItem('AccommodationType', AccommodationType);
+    if (selectedBox !== null && accommodationType !== null) {
+      localStorage.setItem('AccommodationType', accommodationType);
     }
-  }, [selectedBox, AccommodationType]);
+  }, [selectedBox, accommodationType]);
 
   return (
     <div className="wrapper">
       <div>
         <label>
+          <div>
+            From Date: {fromDate}, To Date: {toDate}, Adults: {numAdults}, Kids: {numKids}
+          </div>
+        </label>
+      </div>
+      <div style={{ padding: '10px' }}>
+        <label>
           In which city are you staying?
           <input type="text" value={city} onChange={handleCityChange} />
         </label>
       </div>
-      <div style={{ padding: '25px' }}>
+      <div style={{ padding: '10px' }}>
         <label>
           Which type of accommodation are you going to be living in?
         </label>

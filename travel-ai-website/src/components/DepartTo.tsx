@@ -67,7 +67,7 @@ const DepartToInput = () => {
     setInputValue(`${code}, ${city}`);
     setSuggestions([]);
     localStorage.setItem("STRING_VALUE_TO", code);
-    
+    localStorage.setItem("DEPART_TO_CITY", city);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
