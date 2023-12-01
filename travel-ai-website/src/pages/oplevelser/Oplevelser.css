@@ -8,6 +8,10 @@
   background-color: rgba(255, 253, 253, 0.8);
 }
 
+.conversation-history::-webkit-scrollbar {
+  display: none;
+}
+
 .user-message {
   background-color: rgb(209, 235, 198);
   padding: 8px;
