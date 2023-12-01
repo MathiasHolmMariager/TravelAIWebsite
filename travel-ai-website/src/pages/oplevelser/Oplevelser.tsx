@@ -66,9 +66,10 @@ export default function ReturnInput() {
     };
 
     fetchData();
-  }, []); */
+  }, []);*/
 
   return (
+    <div className='gbtchat'>
     <Container component="main" maxWidth="md">
       <CssBaseline />
       {initialLoading && ( // Check initialLoading for useEffect loading
@@ -119,7 +120,7 @@ export default function ReturnInput() {
                 className="user-input"
                 InputProps={{ placeholder: 'Ask further questions here' }}
               />
-              <Button type="submit" variant="contained" className="submit-button">
+              <Button type="submit" variant="contained" className="submit-button" sx={{marginTop: "6px", marginLeft: "10px"}}>
                 Submit
               </Button>
             </form>
@@ -128,5 +129,6 @@ export default function ReturnInput() {
         </Box>
       )}
     </Container>
+    </div>
   );
 }

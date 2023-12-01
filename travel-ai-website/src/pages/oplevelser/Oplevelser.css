@@ -3,8 +3,9 @@
   border-radius: 8px;
   padding: 10px;
   margin-bottom: 10px;
-  max-height: 500px;
+  height: 650px;
   overflow-y: auto;
+  margin-top: -50px;
   background-color: rgba(255, 253, 253, 0.8);
 }
 
@@ -52,4 +53,8 @@
   color: white;
   font-weight: bold;
   margin-top: 50px;
+}
+
+.gbtChat {
+  height: 100%;
 }
