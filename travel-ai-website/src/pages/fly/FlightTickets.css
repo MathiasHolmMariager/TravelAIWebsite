@@ -1,15 +1,18 @@
 .listContainer {
-  background-color: rgba(35, 102, 4, 0.2);
+  background-color: rgb(209, 235, 198);
   border-radius: 5px;
-  margin-bottom: 10px;
-  width: 1000px;
+  margin-bottom: 20px;
+  width: 80%;
   height: 100%;
   position: relative;
+  margin-left: 10%;
+  margin-right: 10%;
 }
   
 .imgCSS {
   width: 50px;
   height: 50px;
+  margin-right: 20px;
 }
 
 .price {
@@ -20,7 +23,7 @@
 }
 .save {
   position: absolute;
-  right: 40px;
+  right: 30px;
   top: 150px;
   font-size: 20px;
 }
@@ -29,14 +32,18 @@
   position: fixed;
   top: 250px; 
   left: 50px; 
-  width: auto;
-  background-color: #fff;
-  border: 1px solid #ccc;
+  width: 70%;
+  background-color: rgba(255, 253, 253, 0.8);
   padding: 20px;
-  max-height: 600px; 
+  max-height: 100%; 
   overflow-y: auto;
   left: 50%;
   transform: translateX(-50%);
+  border-radius: 15px;
+}
+
+.fixedBox::-webkit-scrollbar {
+  display: none;
 }
 
 .flightInfo {
@@ -47,4 +54,17 @@
   position: absolute;
   bottom: 20px;
   right: 20px;
+}
+
+.space {
+  margin-top: 50px;
+}
+
+.flightfirm {
+  display: flex;
+  flex-direction: row;
+}
+
+.lastItem {
+  margin-bottom: 300px;
 }

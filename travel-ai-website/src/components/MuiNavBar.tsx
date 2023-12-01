@@ -6,6 +6,8 @@ import StepLabel from "@mui/material/StepLabel";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useNavigate, useLocation } from "react-router-dom";
+import Modal from "react-modal";
+import { useState } from "react";
 
 const stepPaths = [
   "/",
@@ -17,8 +19,10 @@ const stepPaths = [
 ];
 
 const stepNames = ["Home", "Fly", "Hotel", "Persons", "Oplevelser", "Overview"];
- 
+
 const STORAGE_KEY = "CURRENT_PAGE_STEP";
+
+Modal.setAppElement("#root");
 
 export default function HorizontalLinearStepper() {
   const navigate = useNavigate();
@@ -29,8 +33,8 @@ export default function HorizontalLinearStepper() {
   });
   const [skipped, setSkipped] = React.useState(new Set<number>());
 
-  const isStepOptional = (step: number) => {
-    return false
+  const isStepOptional = (_step: number) => {
+    return false;
   };
 
   const isStepSkipped = (step: number) => {
@@ -39,7 +43,6 @@ export default function HorizontalLinearStepper() {
 
   const handleNext = () => {
     if (activeStep === stepPaths.length - 1) {
-      console.log("Finish button clicked. Perform final actions.");
       handleReset();
     } else {
       let newSkipped = skipped;
@@ -48,10 +51,22 @@ export default function HorizontalLinearStepper() {
         newSkipped.delete(activeStep);
       }
 
+      //##############uncomment for at ikke kunne trykke next##################
+      /*const cityValue = localStorage.getItem("city");
+      if (activeStep === 1 && (cityValue === "" || cityValue === null)) {
+        alert("Please select an flight before the next step");
+      } else {
+        setActiveStep((prevActiveStep) => prevActiveStep + 1);
+        setSkipped(newSkipped);
+        navigate(stepPaths[activeStep + 1]);
+      }*/
+      //#############slet det her###############################################
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
-      setSkipped(newSkipped);
-      navigate(stepPaths[activeStep + 1]);
+        setSkipped(newSkipped);
+        navigate(stepPaths[activeStep + 1]);
+      //#########################################################################
     }
+
   };
 
   const handleBack = () => {
@@ -77,10 +92,22 @@ export default function HorizontalLinearStepper() {
     navigate(stepPaths[activeStep + 1]);
   };
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const handleReset = () => {
+    
+    setIsModalOpen(true);
+  };
+
+  const handleModalYes = () => {
     setActiveStep(0);
     localStorage.setItem(STORAGE_KEY, "0");
     navigate(stepPaths[0]);
+    setIsModalOpen(false);
+  };
+
+  const handleModalNo = () => {
+    setIsModalOpen(false);
   };
 
   const handleBeforeUnload = () => {
@@ -105,65 +132,86 @@ export default function HorizontalLinearStepper() {
   }, [activeStep]);
 
   return (
-    <Box sx={{ width: "80%" , marginTop: "10px"}}>
-      <Stepper activeStep={activeStep}>
-        {stepNames.map((label, index) => {
-          const stepProps: { completed?: boolean } = {};
-          const labelProps: {
-            optional?: React.ReactNode;
-          } = {};
-          if (isStepOptional(index)) {
-            labelProps.optional = (
-              <Typography variant="caption">Optional</Typography>
+    <Box sx={{ width: "80%", marginTop: "10px", display: "flex", flexDirection: "row", }}>
+      <React.Fragment>
+        {activeStep !== 0 && (
+          <Button
+            color="inherit"
+            disabled={activeStep === 0}
+            onClick={handleBack}
+            sx={{
+              height: "40px",
+              width: "10%",
+              fontSize: "20px",
+              marginTop: "20px",
+            }}
+          >
+            Back
+          </Button>
+        )}
+        <Box sx={{ flex: "1 1 auto" }} />
+        <Stepper activeStep={activeStep} sx={{ flex: "1 1 auto", width: "80%", marginTop: "-20px", marginLeft: activeStep === 0 ? "10%" : 0, marginRight: activeStep === 0 ? "10%" : 0, }}>
+          {stepNames.map((label, index) => {
+            const stepProps: { completed?: boolean } = {};
+            const labelProps: {
+              optional?: React.ReactNode;
+            } = {};
+            if (isStepOptional(index)) {
+              labelProps.optional = (
+                <Typography variant="caption">Optional</Typography>
+              );
+            }
+            if (isStepSkipped(index)) {
+              stepProps.completed = false;
+            }
+            return (
+              <Step key={label} {...stepProps}>
+                <StepLabel {...labelProps}>{label}</StepLabel>
+              </Step>
             );
-          }
-          if (isStepSkipped(index)) {
-            stepProps.completed = false;
-          }
-          return (
-            <Step key={label} {...stepProps}>
-              <StepLabel {...labelProps}>{label}</StepLabel>
-            </Step>
-          );
-        })}
-      </Stepper>
-      {activeStep === stepPaths.length ? (
-        <React.Fragment>
-          <Typography sx={{ mt: 2, mb: 1 }}>
-            All steps completed - you&apos;re finished
-          </Typography>
-          <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
-            <Box sx={{ flex: "1 1 auto" }} />
-            <Button onClick={handleReset}>Reset</Button>
-          </Box>
-        </React.Fragment>
-      ) : (
-        <React.Fragment>
-          <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
-            {activeStep !== 0 && (
-              <Button
-                color="inherit"
-                disabled={activeStep === 0}
-                onClick={handleBack}
-                sx={{ mr: 1 }}
-              >
-                Back
-              </Button>
-            )}
-            <Box sx={{ flex: "1 1 auto" }} />
-            {isStepOptional(activeStep) && (
-              <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
-                Skip
-              </Button>
-            )}
-            {activeStep !== 0 && (
-            <Button onClick={handleNext}>
-              {activeStep === stepPaths.length - 1 ? "Finish" : "Next"}
-            </Button>
-          )}
-          </Box>
-        </React.Fragment>
-      )}
+          })}
+        </Stepper>
+        {isStepOptional(activeStep) && (
+          <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
+            Skip
+          </Button>
+        )}
+        {activeStep !== 0 && (
+          <Button
+            onClick={handleNext}
+            sx={{
+              height: "40px",
+              width: "10%",
+              fontSize: "20px",
+              marginTop: "20px"
+            }}
+          >
+            {activeStep === stepPaths.length - 1 ? "Finish" : "Next"}
+          </Button>
+        )}
+      </React.Fragment>
+      <Modal
+        isOpen={isModalOpen}
+        onRequestClose={() => setIsModalOpen(false)}
+        contentLabel="Confirmation Modal"
+        style={{
+          content: {
+            width: "400px",
+            height: "150px",
+            margin: "auto",
+          },
+        }}
+      >
+        <div>
+          <p style={{ margin: "20px" }}>Are you finish?</p>
+          <button style={{ margin: "10px" }} onClick={handleModalNo}>
+            No, I'm Danish
+          </button>
+          <button style={{ margin: "10px" }} onClick={handleModalYes}>
+            Yes, I'm finished
+          </button>
+        </div>
+      </Modal>
     </Box>
   );
 }

@@ -13,10 +13,10 @@ const Home = () => {
 
   useEffect(() => {
     const handlePageLoad = () => {
-      const adults = parseInt(localStorage.getItem('adults') ?? '0', 10);
-      const kids = parseInt(localStorage.getItem('kids') ?? '0', 10);
+      const adults = parseInt(localStorage.getItem('ADULTS') ?? '0', 10);
+      const kids = parseInt(localStorage.getItem('KIDS') ?? '0', 10);
       if (adults + kids === 0) {
-        localStorage.setItem('adults', '1');
+        localStorage.setItem('ADULTS', '1');
       }
   
     };

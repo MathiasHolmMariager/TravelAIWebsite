@@ -5,8 +5,8 @@ import TextField from '@mui/material/TextField';
 
 const NumberInput: React.FC = () => {
   // Load values from local storage on component mount
-  const savedAdults = localStorage.getItem('adults');
-  const savedKids = localStorage.getItem('kids');
+  const savedAdults = localStorage.getItem('ADULTS');
+  const savedKids = localStorage.getItem('KIDS');
 
   const [adults, setAdults] = React.useState<number>(
     savedAdults ? Number(savedAdults) : 1
@@ -33,8 +33,8 @@ const NumberInput: React.FC = () => {
   };
 
   useEffect(() => {
-    localStorage.setItem('adults', String(adults));
-    localStorage.setItem('kids', String(kids));
+    localStorage.setItem('ADULTS', String(adults));
+    localStorage.setItem('KIDS', String(kids));
   }, [adults, kids]);
 
   const totalMax = adults + kids;

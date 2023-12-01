@@ -66,7 +66,8 @@ const DepartToInput = () => {
   const handleSuggestionClick = (code: string, city: string) => {
     setInputValue(`${code}, ${city}`);
     setSuggestions([]);
-    localStorage.setItem("STRING_VALUE_TO", code);
+    localStorage.setItem("TO", code);
+    localStorage.setItem("STRING_VALUE_CITY", city);
     
   };
 
@@ -88,7 +89,7 @@ const DepartToInput = () => {
 
   useEffect(() => {
 
-    const storedValue = localStorage.getItem("STRING_VALUE_TO");
+    const storedValue = localStorage.getItem("TO");
     if (storedValue) {
       const matchingAirport = airportDataEU.find(
         (airport) => airport.code === storedValue
@@ -123,7 +124,7 @@ const DepartToInput = () => {
   
   const handleTextFieldClick = () => {
     setInputValue('');
-    localStorage.setItem('STRING_VALUE_TO', "");
+    localStorage.setItem('TO', "");
   };
 
   return (

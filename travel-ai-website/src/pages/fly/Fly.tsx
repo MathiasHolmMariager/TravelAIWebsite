@@ -23,25 +23,25 @@ function Fly() {
   //sikre at hvis der ikk er gemt noget i local storage vil den gemme mindst 1 adult når man loader pagen
   useEffect(() => {
     const handlePageLoad = () => {
-      const adults = parseInt(localStorage.getItem('adults') ?? '0', 10);
-      const kids = parseInt(localStorage.getItem('kids') ?? '0', 10);
+      const adults = parseInt(localStorage.getItem('ADULTS') ?? '0', 10);
+      const kids = parseInt(localStorage.getItem('KIDS') ?? '0', 10);
       if (adults + kids === 0) {
-        localStorage.setItem('adults', '1');
+        localStorage.setItem('ADULTS', '1');
       }
   
-      const storedFromDate = localStorage.getItem('FROM_DATE');
+      const storedFromDate = localStorage.getItem('DATE_FROM');
       if (storedFromDate === null || storedFromDate === undefined) {
         const currentDate = new Date();
         const formattedDate = formatDateISO8601(currentDate);
-        localStorage.setItem('FROM_DATE', formattedDate);
+        localStorage.setItem('DATE_FROM', formattedDate);
       }
 
-      const storedToDate = localStorage.getItem('TO_DATE');
+      const storedToDate = localStorage.getItem('DATE_TO');
       if (storedToDate === null || storedToDate === undefined) {
         const currentDate = new Date();
         currentDate.setDate(currentDate.getDate() + 1); 
         const formattedDate = formatDateISO8601(currentDate);
-        localStorage.setItem('TO_DATE', formattedDate);
+        localStorage.setItem('DATE_TO', formattedDate);
       }
     };
   

@@ -8,7 +8,6 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 // Function to format the date to ISO 8601 format (YYYY-MM-DD)
 const formatDateISO8601 = (date: any) => date.format('YYYY-MM-DD');
 
-// ... (existing imports and functions)
 
 function Calender() {
   // State to store selected dates
@@ -17,8 +16,8 @@ function Calender() {
 
   // Check local storage for existing values on initial load
   useEffect(() => {
-    const storedFromDate = localStorage.getItem('FROM_DATE');
-    const storedToDate = localStorage.getItem('TO_DATE');
+    const storedFromDate = localStorage.getItem('DATE_FROM');
+    const storedToDate = localStorage.getItem('DATE_TO');
 
     if (storedFromDate && storedToDate) {
       setFromDate(dayjs(storedFromDate));
@@ -36,7 +35,7 @@ function Calender() {
     }
 
     setFromDate(selectedDate);
-    localStorage.setItem('FROM_DATE', formatDateISO8601(selectedDate));
+    localStorage.setItem('DATE_FROM', formatDateISO8601(selectedDate));
   };
 
   // Function to handle "to" date selection
@@ -46,11 +45,11 @@ function Calender() {
     // Check if selected "to" date is before current "from" date
     if (selectedDate.isBefore(fromDate)) {
       setFromDate(selectedDate); // Set "from" date to the selected "to" date
-      localStorage.setItem('FROM_DATE', formatDateISO8601(selectedDate));
+      localStorage.setItem('DATE_FROM', formatDateISO8601(selectedDate));
     }
 
     setToDate(selectedDate);
-    localStorage.setItem('TO_DATE', formatDateISO8601(selectedDate));
+    localStorage.setItem('DATE_TO', formatDateISO8601(selectedDate));
   };
 
   return (
@@ -64,6 +63,7 @@ function Calender() {
             value={fromDate}
             onChange={handleFromDateChange}
             className="datePickerContainer"
+            minDate={dayjs()} // Set minimum date to the current day
           />
         </div>
         <div style={{ margin: '0 10px', width: '150px'}}>

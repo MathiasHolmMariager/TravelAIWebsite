@@ -23,13 +23,13 @@
   margin: 0px;
   display: flex;
   justify-content: center;
-  background-color: rgba(35, 102, 4, 0.219)
+  background-color: rgb(209, 235, 198)
 
 }
 
 .PageContent {
   position: fixed;
-  top: 100px;
+  top: 70px;
   width: 80%;
   height: 100%;
   margin: 50px auto;
