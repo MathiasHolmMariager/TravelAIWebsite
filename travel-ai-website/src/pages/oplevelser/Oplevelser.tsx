@@ -14,11 +14,14 @@ interface Message {
   content: string;
 }
 
+// ... (existing imports and interfaces)
+
 export default function ReturnInput() {
   const [userInput, setUserInput] = React.useState<string>('');
   const [userOutput, setUserOutput] = React.useState<string>('');
   const [conversationHistory, setConversationHistory] = React.useState<Message[]>([]);
-  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const [isLoading, setIsLoading] = React.useState<boolean>(false); // For handleSubmit loading
+  const [initialLoading, setInitialLoading] = React.useState<boolean>(true); // For useEffect loading
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUserInput(event.target.value);
@@ -27,7 +30,7 @@ export default function ReturnInput() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (userInput) {
-      setIsLoading(true);
+      setIsLoading(true); // Set isLoading for handleSubmit loading
       try {
         const { assistantReply, conversationHistory: updatedHistory } = await OpenAItest(userInput, conversationHistory);
         setConversationHistory(updatedHistory);
@@ -35,8 +38,10 @@ export default function ReturnInput() {
         if (assistantReply !== null) {
           setUserOutput(assistantReply);
         } else {
+          setUserOutput('No response');
         }
       } catch (error) {
+        setUserOutput('Error occurred');
       }
       setIsLoading(false);
     }
@@ -44,7 +49,7 @@ export default function ReturnInput() {
 
   /*React.useEffect(() => {
     const fetchData = async () => {
-      setIsLoading(true);
+      setInitialLoading(true); // Set initialLoading to true before starting useEffect loading
       try {
         const { assistantReply, conversationHistory: updatedHistory } = await OpenAItest(fullPrompt);
         setConversationHistory(updatedHistory);
@@ -57,56 +62,71 @@ export default function ReturnInput() {
       } catch (error) {
         setUserOutput('Error occurred');
       }
-      setIsLoading(false);
+      setInitialLoading(false); // Set initialLoading to false after useEffect completes
     };
 
     fetchData();
-  }, []); // Empty dependency array to run only on component mount*/
+  }, []); */
 
   return (
     <Container component="main" maxWidth="md">
       <CssBaseline />
-      <Box
-        sx={{
-          marginTop: 8,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
-        <div className="chat-container">
-          <div className="conversation-history">
-            {conversationHistory.map((message, index) => (
-              <div
-                key={index}
-                className={index % 2 === 0 ? 'user-message' : 'assistant-message'}
-              >
-                {message.content}
-              </div>
-            ))}
-          </div>
+      {initialLoading && ( // Check initialLoading for useEffect loading
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <img src={loading_animation} alt="Loading..." width={'100px'} height={'100px'} />
+          <p className='loading-text'>Loading things to do based on interests and city...</p>
+        </Box>
+      )}
+      {!initialLoading && ( // Display conversation history and form once useEffect loading is complete
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <div>
+            <div className="conversation-history">
+              {conversationHistory.map((message, index) => (
+                <div
+                  key={index}
+                  className={index % 2 === 0 ? 'user-message' : 'assistant-message'}
+                >
+                  {message.content}
+                </div>
+              ))}
+            </div>
 
-          <form onSubmit={handleSubmit} className="user-input-form">
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="UserInput"
-              name="UserInput"
-              autoComplete="UserInput"
-              autoFocus
-              value={userInput}
-              onChange={handleInputChange}
-              className="user-input"
-              InputProps={{ placeholder: 'Ask further questions here' }}
-            />
-            <Button type="submit" variant="contained" className="submit-button">
-              Submit
-            </Button>
-          </form>
-          {isLoading && <img src={loading_animation} alt="Loading..." width={'50px'} height={'50px'} />}
-        </div>
-      </Box>
+            <form onSubmit={handleSubmit} className="user-input-form">
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="UserInput"
+                name="UserInput"
+                autoComplete="UserInput"
+                autoFocus
+                value={userInput}
+                onChange={handleInputChange}
+                className="user-input"
+                InputProps={{ placeholder: 'Ask further questions here' }}
+              />
+              <Button type="submit" variant="contained" className="submit-button">
+                Submit
+              </Button>
+            </form>
+            {isLoading && <img src={loading_animation} alt="Loading..." width={'50px'} height={'50px'} />}
+          </div>
+        </Box>
+      )}
     </Container>
   );
 }

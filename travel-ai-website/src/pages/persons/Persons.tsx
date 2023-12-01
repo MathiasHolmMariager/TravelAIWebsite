@@ -41,7 +41,6 @@ export default function CheckboxList() {
     });
 
     setChecked((prevChecked) => {
-      // Compare if the current state is different from the new state
       if (JSON.stringify(prevChecked) !== JSON.stringify(storedChecked)) {
         return storedChecked;
       }
@@ -50,9 +49,16 @@ export default function CheckboxList() {
   }, []);
 
   const listColors = [
-    "#ff5400", "#ff8e00", "#ffd200", "#81e650", "#00d267",
-    "#00c0ff", "#8b48fe", "#ca41fc", "#ff46fb"
-  ];
+    "rgba(255, 84, 0, 0.5)",
+    "rgba(255, 142, 0, 0.5)",
+    "rgba(255, 210, 0, 0.5)",
+    "rgba(129, 230, 80, 0.5)",
+    "rgba(0, 210, 103, 0.5)",
+    "rgba(0, 192, 255, 0.5)",
+    "rgba(139, 72, 254, 0.5)",
+    "rgba(202, 65, 252, 0.5)",
+    "rgba(255, 70, 251, 0.5)"
+  ];  
 
   const handleToggle = (listName: string, itemName: string) => () => {
     setChecked((prevChecked) => {
@@ -73,7 +79,6 @@ export default function CheckboxList() {
         newChecked[listName] = newCheckedItems;
       }
 
-      // Update local storage here
       const updatedLocalStorage = { ...newChecked };
       localStorage.setItem(listName, JSON.stringify(updatedLocalStorage[listName]));
 
@@ -129,23 +134,6 @@ export default function CheckboxList() {
             </List>
           ))}
         </div>
-      </div>
-      <div className="personal-attributes-container">
-        <strong>Personal attributes:</strong>
-        <ul className="personal-attributes-list">
-          {listNames.map((listName, listIndex) => {
-            const sortedItems = (checked[listName] || []).sort();
-
-            return (
-              <li
-                key={listIndex}
-                className="personal-attributes-item"
-              >
-                {listName}: {sortedItems.join(", ")}
-              </li>
-            );
-          })}
-        </ul>
       </div>
     </div>
   );
