@@ -7,7 +7,7 @@ function Hotel() {
     localStorage.getItem('AccommodationType') || null
   );
   const [city, setCity] = useState<string>(
-    () => localStorage.getItem('DEPART_TO_CITY') || ''
+    () => localStorage.getItem('city') || ''
   );
   const [fromDate, setFromDate] = useState<string>(() => localStorage.getItem('FROM_DATE') || '');
   const [toDate, setToDate] = useState<string>(() => localStorage.getItem('TO_DATE') || '');
