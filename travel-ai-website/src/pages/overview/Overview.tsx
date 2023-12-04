@@ -14,11 +14,11 @@ function Overview() {
     const data = window.localStorage.getItem('FLIGHT_PRICE');
     return data !== null ? data : '';
   });
-  const [stringValue4] = useState(() => {
+  const [stringValue3] = useState(() => {
     const data = window.localStorage.getItem('adults');
     return data !== null ? data : '';
   });
-  const [stringValue3] = useState(() => {
+  const [stringValue4] = useState(() => {
     const data = window.localStorage.getItem('kids');
     return data !== null ? data : '';
   });
@@ -40,11 +40,11 @@ function Overview() {
         Flight price:
         <input type="text" defaultValue={stringValue2} />
       </div>
-      <div className='kids'>
+      <div className='adults'>
         Adults:
         <input type="text" defaultValue={stringValue3} />
       </div>
-      <div className='adults'>
+      <div className='kids'>
         Kids:
         <input type="text" defaultValue={stringValue4} />
       </div>
