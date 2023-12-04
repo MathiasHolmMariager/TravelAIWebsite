@@ -4,53 +4,23 @@ import "./FlightTickets.css";
 import {  useState } from "react";
 
 
-
 function FlightsComponent() {
-  const { sortedArray, buttonClicked, } = useMyContext();
+  const { sortedArray, buttonClicked } = useMyContext();
+  const [saveButtonStates, setSaveButtonStates] = useState<{ [key: string]: boolean }>({});
 
+  const handleSaveButtonClick = (itemId: string) => {
 
-  const handleResetAllButtonClick = () => {
-    // Reset all saved flights to false
-    const newSavedFlights = Array(sortedArray.length).fill(false);
-    setSavedFlights(newSavedFlights);
+    setSaveButtonStates(() => ({
+      [itemId]: true,
+    }));
 
-    // Also update the local storage
-    localStorage.setItem("SAVED_FLIGHTS", JSON.stringify(newSavedFlights));
-  };
+    const selectedItem = sortedArray.find(item => item.id === itemId);
 
-
-  window.addEventListener("storage", (event) => {
-    if (event.key === "SAVED_FLIGHTS") {
-      const savedFlightsData = localStorage.getItem("SAVED_FLIGHTS");
-      setSavedFlights(savedFlightsData ? JSON.parse(savedFlightsData) : []);
+    if (selectedItem) {
+      localStorage.setItem("FLIGHT_PRICE", selectedItem.total_amount);
+    } else {
+      console.error(`Item with id ${itemId} not found.`);
     }
-  });
-
-
-
-  const [savedFlights, setSavedFlights] = useState(() => {
-    // Initialize savedFlights state based on local storage
-    const savedFlightsData = localStorage.getItem("SAVED_FLIGHTS");
-    return savedFlightsData ? JSON.parse(savedFlightsData) : [];
-  });
-
-  const handleSaveButtonClick = (price: string, index: number) => {
-    localStorage.setItem("FLIGHT_PRICE", price);
-
-    setSavedFlights((prevSavedFlights: any) => {
-      const newSavedFlights = [...prevSavedFlights];
-
-      newSavedFlights.forEach((_, i) => {
-        if (i !== index) {
-          newSavedFlights[i] = false;
-        }
-      });
-
-      newSavedFlights[index] = true;
-
-      localStorage.setItem("SAVED_FLIGHTS", JSON.stringify(newSavedFlights));
-      return newSavedFlights;
-    });
 
     const dataCity = window.localStorage.getItem("city_ticket");
     if (dataCity !== null) {
@@ -96,16 +66,16 @@ function FlightsComponent() {
   };
 
   if (!buttonClicked) {
-    return null; // Render nothing if the button hasn't been clicked yet
+    return null; 
   }
 
   return (
     <div className="fixedBox">
-      {sortedArray.map((item, index) => (
+      {sortedArray.map((item) => (
         <div
-          key={index}
+          key={item.id} // Assuming you have a unique identifier like "id" in your data
           className={`listContainer ${
-            index === sortedArray.length - 1 ? "lastItem" : ""
+            item === sortedArray[sortedArray.length - 1] ? "lastItem" : ""
           }`}
         >
           <List>
@@ -174,12 +144,10 @@ function FlightsComponent() {
                     <Button
                       variant="contained"
                       color="primary"
-                      onClick={() =>
-                        handleSaveButtonClick(item.total_amount, index)
-                      }
-                      disabled={savedFlights[index]}
+                      onClick={() => handleSaveButtonClick(item.id)}
+                      disabled={saveButtonStates[item.id]} 
                     >
-                      {savedFlights[index] ? "Saved" : "Save flight"}
+                      {saveButtonStates[item.id] ? "Saved" : "Save flight"}
                     </Button>
                   </p>
                 </ul>

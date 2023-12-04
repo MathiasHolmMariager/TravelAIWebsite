@@ -5,7 +5,7 @@ import loading_animation from "../../assets/loading_animation.gif";
 import { useState } from "react";
 
 function MyComponent() {
-  const { updateSortedArray, setButtonClicked, setAllFlightsAsNotSaved } = useMyContext();
+  const { updateSortedArray, setButtonClicked } = useMyContext();
   const [isLoading, setIsLoading] = useState(false);
 
   const onClick = async () => {
@@ -27,7 +27,6 @@ function MyComponent() {
     } else {
       try {
         setIsLoading(true);
-        setAllFlightsAsNotSaved();
         const fromDate = localStorage.getItem("DATE_FROM");
         const toDate = localStorage.getItem("DATE_TO");
         const stringValueFrom = localStorage.getItem("STRING_VALUE_FROM");
@@ -123,6 +122,7 @@ function MyComponent() {
           airport_arriving_away: item.slices[0].destination.name,
           airport_departing_home: item.slices[1].origin.name,
           airport_arriving_home: item.slices[1].destination.name,
+          id: item.id
         }));
 
         updateSortedArray(sortedArray);

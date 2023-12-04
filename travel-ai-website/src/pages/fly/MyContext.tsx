@@ -13,20 +13,19 @@ interface Item {
   airport_arriving_away: string;
   airport_departing_home: string;
   airport_arriving_home: string;
+  id: string;
 }
 
 interface MyProviderProps {
   children: ReactNode;
 }
 
-const SAVED_FLIGHTS_KEY = "SAVED_FLIGHTS";
 
 interface MyContextData {
   sortedArray: Item[];
   updateSortedArray: (newArray: Item[]) => void;
   buttonClicked: boolean;
   setButtonClicked: (clicked: boolean) => void;
-  setAllFlightsAsNotSaved: () => void;
 }
 
 // Create the context with an initial value
@@ -35,16 +34,12 @@ const MyContext = createContext<MyContextData | undefined>(undefined);
 export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
   const [sortedArray, setSortedArray] = useState<Item[]>([]);
   const [buttonClicked, setButtonClicked] = useState<boolean>(false);
-  const [savedFlights, setSavedFlights] = useState<boolean[]>([]);
+
 
   const updateSortedArray = (newArray: Item[]) => {
     setSortedArray(newArray);
   };
-  const setAllFlightsAsNotSaved = () => {
-    const updatedSavedFlights = savedFlights.map(() => false);
-    setSavedFlights(updatedSavedFlights);
-    localStorage.setItem(SAVED_FLIGHTS_KEY, JSON.stringify(updatedSavedFlights));
-  }
+
 
   
 
@@ -53,7 +48,6 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
     updateSortedArray,
     buttonClicked,
     setButtonClicked,
-    setAllFlightsAsNotSaved,
   };
 
   return <MyContext.Provider value={contextValue}>{children}</MyContext.Provider>;
