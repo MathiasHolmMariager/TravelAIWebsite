@@ -15,10 +15,9 @@ const stepPaths = [
   "/Hotel",
   "/persons",
   "/oplevelser",
-  "/overview",
 ];
 
-const stepNames = ["Home", "Fly", "Hotel", "Persons", "Oplevelser", "Overview"];
+const stepNames = ["Home", "Fly", "Hotel", "Persons", "Oplevelser"];
 
 const STORAGE_KEY = "CURRENT_PAGE_STEP";
 
