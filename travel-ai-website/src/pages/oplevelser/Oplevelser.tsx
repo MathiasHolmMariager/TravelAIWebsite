@@ -120,11 +120,18 @@ export default function ReturnInput() {
                 className="user-input"
                 InputProps={{ placeholder: 'Ask further questions here' }}
               />
+              {!isLoading && (
               <Button type="submit" variant="contained" className="submit-button" sx={{marginTop: "6px", marginLeft: "10px"}}>
                 Submit
               </Button>
+              )}
+              {isLoading && (
+              <Button type="submit" variant="contained" className="submit-button" sx={{marginTop: "6px", marginLeft: "10px"}}>
+              <img src={loading_animation} alt="Loading..." width={'50px'} height={'50px'} />
+            </Button>
+            )}
             </form>
-            {isLoading && <img src={loading_animation} alt="Loading..." width={'50px'} height={'50px'} />}
+            
           </div>
         </Box>
       )}
