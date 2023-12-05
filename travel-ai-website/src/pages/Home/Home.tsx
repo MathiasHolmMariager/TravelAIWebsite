@@ -8,7 +8,7 @@ const Home = () => {
 
   const handleNextClick = () => {
     //localStorage.setItem("activeStep", "1");
-    navigate("/Fly");
+    navigate("/flight");
   };
 
   useEffect(() => {

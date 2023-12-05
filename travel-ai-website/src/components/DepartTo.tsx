@@ -147,7 +147,7 @@ const DepartToInput = () => {
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
           onClick={handleTextFieldClick}
-          style={{ marginLeft: '10px', marginRight: '-15px', width: '150px'}}
+          style={{ marginLeft: '-14px', marginRight: '-15px', width: '150px'}}
         />
         {suggestions.length > 0 && (
           <div
