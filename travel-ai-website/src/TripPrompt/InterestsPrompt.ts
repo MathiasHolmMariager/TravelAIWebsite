@@ -13,11 +13,11 @@ export function getInterestString(): string {
     );
     return [...adultsArray, ...kidsArray];
   };
-
+  
   const listNames = generateListNames();
-
+  
   const counts: { [key: string]: number } = {};
-
+  
   listNames.forEach((listName) => {
     const stored = localStorage.getItem(listName);
     if (stored) {
@@ -31,6 +31,20 @@ export function getInterestString(): string {
       });
     }
   });
+  
+  // Extract unique interests from the counts object
+  const combinedInterests = Object.keys(counts);
+  
+  // Function to generate interest string
+  function getInterestString(interestsArray: any[]) {
+    return `Your interests are ${interestsArray.join(', ')}`;
+  }
+  
+  // Generate interest string using the combined interests
+  const interestsString = getInterestString(combinedInterests);
+  
+  // Store the generated interest string in localStorage
+  localStorage.setItem('generatedInterests', interestsString);
 
   const sortedCustomNames = Object.keys(counts).sort((a, b) => counts[b] - counts[a]);
 
