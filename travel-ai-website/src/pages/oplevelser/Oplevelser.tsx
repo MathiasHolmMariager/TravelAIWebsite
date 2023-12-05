@@ -50,7 +50,7 @@ export default function ReturnInput() {
     }
   };
 
-  React.useEffect(() => {
+  /*React.useEffect(() => {
     const fetchData = async () => {
       setInitialLoading(true); // Set initialLoading to true before starting useEffect loading
       try {
@@ -77,7 +77,7 @@ export default function ReturnInput() {
     };
 
     fetchData();
-  }, []);
+  }, []);*/
 
   return (
     <div className="gbtchat">
