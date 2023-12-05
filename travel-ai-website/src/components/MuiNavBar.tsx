@@ -100,7 +100,7 @@ export default function HorizontalLinearStepper() {
 
   const handleModalYes = () => {
     setActiveStep(0);
-    localStorage.setItem(STORAGE_KEY, "0");
+    localStorage.clear();
     navigate(stepPaths[0]);
     setIsModalOpen(false);
   };
