@@ -79,125 +79,129 @@ export default function ReturnInput() {
   }, []);*/
 
   const [city] = useState(() => {
-    const data = window.localStorage.getItem('city');
-    return data !== null ? data : '';
+    const data = window.localStorage.getItem("city");
+    return data !== null ? data : "";
   });
 
   const [price] = useState(() => {
-    const data = window.localStorage.getItem('FLIGHT_PRICE');
-    return data !== null ? data : '';
+    const data = window.localStorage.getItem("FLIGHT_PRICE");
+    return data !== null ? data : "";
   });
 
   const [travelfrom] = useState(() => {
-    const data = window.localStorage.getItem('TRAVEL_FROM');
-    return data !== null ? data : '';
+    const data = window.localStorage.getItem("TRAVEL_FROM");
+    return data !== null ? data : "";
   });
 
   const [travelto] = useState(() => {
-    const data = window.localStorage.getItem('TRAVEL_TO');
-    return data !== null ? data : '';
+    const data = window.localStorage.getItem("TRAVEL_TO");
+    return data !== null ? data : "";
   });
 
   const [traveldate] = useState(() => {
-    const data = window.localStorage.getItem('TRAVEL_DATE');
-    return data !== null ? data : '';
+    const data = window.localStorage.getItem("TRAVEL_DATE");
+    return data !== null ? data : "";
   });
 
   const [traveltimedepart] = useState(() => {
-    const data = window.localStorage.getItem('TRAVEL_DATE_TIME_DEPART');
-    return data !== null ? data : '';
+    const data = window.localStorage.getItem("TRAVEL_DATE_TIME_DEPART");
+    return data !== null ? data : "";
   });
 
   const [traveltimearrive] = useState(() => {
-    const data = window.localStorage.getItem('TRAVEL_DATE_TIME_ARRIVE');
-    return data !== null ? data : '';
+    const data = window.localStorage.getItem("TRAVEL_DATE_TIME_ARRIVE");
+    return data !== null ? data : "";
   });
 
   const [returnfrom] = useState(() => {
-    const data = window.localStorage.getItem('RETURN_FROM');
-    return data !== null ? data : '';
+    const data = window.localStorage.getItem("RETURN_FROM");
+    return data !== null ? data : "";
   });
 
   const [returnto] = useState(() => {
-    const data = window.localStorage.getItem('RETURN_TO');
-    return data !== null ? data : '';
+    const data = window.localStorage.getItem("RETURN_TO");
+    return data !== null ? data : "";
   });
 
   const [returndate] = useState(() => {
-    const data = window.localStorage.getItem('RETURN_DATE');
-    return data !== null ? data : '';
+    const data = window.localStorage.getItem("RETURN_DATE");
+    return data !== null ? data : "";
   });
 
   const [returntimedepart] = useState(() => {
-    const data = window.localStorage.getItem('RETURN_DATE_TIME_DEPART');
-    return data !== null ? data : '';
+    const data = window.localStorage.getItem("RETURN_DATE_TIME_DEPART");
+    return data !== null ? data : "";
   });
 
   const [returntimearrive] = useState(() => {
-    const data = window.localStorage.getItem('RETURN_DATE_TIME_ARRIVE');
-    return data !== null ? data : '';
+    const data = window.localStorage.getItem("RETURN_DATE_TIME_ARRIVE");
+    return data !== null ? data : "";
   });
 
   const [accommodation] = useState(() => {
-    const data = window.localStorage.getItem('AccommodationType');
-    return data !== null ? data : '';
+    const data = window.localStorage.getItem("AccommodationType");
+    return data !== null ? data : "";
   });
 
   const [adults] = useState(() => {
-    const data = window.localStorage.getItem('adults');
-    return data !== null ? data : '';
+    const data = window.localStorage.getItem("adults");
+    return data !== null ? data : "";
   });
 
   const [kids] = useState(() => {
-    const data = window.localStorage.getItem('kids');
-    return data !== null ? data : '';
+    const data = window.localStorage.getItem("kids");
+    return data !== null ? data : "";
   });
 
   const [interests] = useState(() => {
-    const data = window.localStorage.getItem('adults');
-    return data !== null ? data : '';
+    const data = window.localStorage.getItem("adults");
+    return data !== null ? data : "";
   });
 
   return (
     <div>
-
-    <div className='overview'>
-      <p>
-        <b>City:</b> {city}
-      </p>
-      <p>
-        <b>Price:</b> {price}€
-      </p>
-      <p>
-      <b>Departure:</b> <br/>{travelfrom} ⟶ {travelto}
-        <br/>
+      <div className="overview">
+        <p>
+          <b>City:</b> {city}
+        </p>
+        <p>
+          <b>Price:</b> {price}€
+        </p>
+        <p>
+          <b>Departure:</b> <br />
+          {travelfrom} ⟶ {travelto}
+          <br />
           {traveldate} 🕑 {traveltimedepart} - {traveltimearrive}
-      </p>
-      <p>
-        <b>Return:</b> <br/>{returnfrom} ⟶ {returnto}
-        <br/>
+        </p>
+        <p>
+          <b>Return:</b> <br />
+          {returnfrom} ⟶ {returnto}
+          <br />
           {returndate} 🕑 {returntimedepart} - {returntimearrive}
-      </p>
-      <p>
-        <b>Accommodation:</b> {accommodation}
-      </p>
-      <p>
-        <b>Adults:</b> {adults}
-      </p>
-      <p>
-        <b>Kids:</b> {kids}
-      </p>
-      <p>
-        <b>Interests:</b> {interests}
-      </p>
-    </div>
+        </p>
+        <p>
+          <b>Accommodation:</b> {accommodation}
+        </p>
+        <p>
+          <b>Adults:</b> {adults}
+        </p>
+        <p>
+          <b>Kids:</b> {kids}
+        </p>
+        <p>
+          <b>Interests:</b> {interests}
+        </p>
+      </div>
 
-    <div className="gbtchat">
-      <Container component="main" maxWidth="md"
-      sx={{
-        marginLeft:80
-      }}>
-        <CssBaseline/>
+      <div className="gbtchat">
+        <Container
+          component="main"
+          maxWidth="md"
+          sx={{
+            marginLeft: 80,
+          }}
+        >
+          <CssBaseline />
           <Box
             sx={{
               marginTop: 8,
@@ -207,18 +211,33 @@ export default function ReturnInput() {
             }}
           >
             <div>
-              <div className="conversation-history">
-                {conversationHistory.map((message, index) => (
-                  <div
-                    key={index}
-                    className={
-                      index % 2 === 0 ? "user-message" : "assistant-message"
-                    }
-                  >
-                    {message.content}
-                  </div>
-                ))}
-              </div>
+              {initialLoading && (
+                <div className="conversation-history-load">
+                  <img
+                    src={loading_animation}
+                    alt="Loading..."
+                    width={"100px"}
+                    height={"100px"}
+                  />
+                  <p className="loading-text">
+                    Loading things to do based on interests and city...
+                  </p>
+                </div>
+              )}
+              {!initialLoading && (
+                <div className="conversation-history">
+                  {conversationHistory.map((message, index) => (
+                    <div
+                      key={index}
+                      className={
+                        index % 2 === 0 ? "user-message" : "assistant-message"
+                      }
+                    >
+                      {message.content}
+                    </div>
+                  ))}
+                </div>
+              )}
 
               <form onSubmit={handleSubmit} className="user-input-form">
                 <TextField
@@ -262,9 +281,8 @@ export default function ReturnInput() {
               </form>
             </div>
           </Box>
-      </Container>
+        </Container>
+      </div>
     </div>
-
-  </div>  
   );
 }
