@@ -11,13 +11,13 @@ import { useState } from "react";
 
 const stepPaths = [
   "/",
-  "/Fly",
-  "/Hotel",
-  "/persons",
-  "/oplevelser",
+  "/flight",
+  "/accommodation",
+  "/interrest",
+  "/experiences",
 ];
 
-const stepNames = ["Home", "Fly", "Hotel", "Persons", "Oplevelser"];
+const stepNames = ["Home", "Flight", "Accommodation", "Interrest", "Experiences"];
 
 const STORAGE_KEY = "CURRENT_PAGE_STEP";
 
