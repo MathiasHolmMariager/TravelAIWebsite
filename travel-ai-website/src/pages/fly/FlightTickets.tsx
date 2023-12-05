@@ -15,9 +15,47 @@ function FlightsComponent() {
     }));
 
     const selectedItem = sortedArray.find(item => item.id === itemId);
-
+    
+    //takes information from ticket and saves to localstorage
     if (selectedItem) {
+      //price
       localStorage.setItem("FLIGHT_PRICE", selectedItem.total_amount);
+      //from
+      localStorage.setItem("TRAVEL_FROM", selectedItem.airport_departing_away);
+      localStorage.setItem("TRAVEL_TO", selectedItem.airport_arriving_away);
+      localStorage.setItem("TRAVEL_DATE", selectedItem.departing_time_away.toLocaleDateString());
+      localStorage.setItem("TRAVEL_DATE_TIME_DEPART", selectedItem.departing_time_away.toLocaleTimeString(
+        navigator.language,
+        {
+          hour: "2-digit",
+          minute: "2-digit",
+        }
+      ));
+      localStorage.setItem("TRAVEL_DATE_TIME_ARRIVE", selectedItem.arriving_time_away.toLocaleTimeString(
+        navigator.language,
+        {
+          hour: "2-digit",
+          minute: "2-digit",
+        }
+      ));
+      //to
+      localStorage.setItem("RETURN_FROM", selectedItem.airport_departing_home);
+      localStorage.setItem("RETURN_TO", selectedItem.airport_arriving_home);
+      localStorage.setItem("RETURN_DATE", selectedItem.departing_time_home.toLocaleDateString());
+      localStorage.setItem("RETURN_DATE_TIME_DEPART", selectedItem.departing_time_home.toLocaleTimeString(
+        navigator.language,
+        {
+          hour: "2-digit",
+          minute: "2-digit",
+        }
+      ));
+      localStorage.setItem("RETURN_DATE_TIME_ARRIVE", selectedItem.arriving_time_home.toLocaleTimeString(
+        navigator.language,
+        {
+          hour: "2-digit",
+          minute: "2-digit",
+        }
+      ));
     } else {
       console.error(`Item with id ${itemId} not found.`);
     }
@@ -43,26 +81,6 @@ function FlightsComponent() {
       console.error("localStorage item 'kids_ticket' is null.");
     }
 
-    const dataTo = window.localStorage.getItem("to_ticket");
-    if (dataTo !== null) {
-      localStorage.setItem("STRING_VALUE_TO", dataTo);
-    } else {
-      console.error("localStorage item 'to_ticket' is null.");
-    }
-
-    const dataDateTo = window.localStorage.getItem("date_to_ticket");
-    if (dataDateTo !== null) {
-      localStorage.setItem("TO_DATE", dataDateTo);
-    } else {
-      console.error("localStorage item 'date_to_ticket' is null.");
-    }
-
-    const dataDateFrom = window.localStorage.getItem("date_from_ticket");
-    if (dataDateFrom !== null) {
-      localStorage.setItem("FROM_DATE", dataDateFrom);
-    } else {
-      console.error("localStorage item 'date_from_ticket' is null.");
-    }
   };
 
   if (!buttonClicked) {

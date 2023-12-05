@@ -9,8 +9,8 @@ function Hotel() {
   const [city, setCity] = useState<string>(
     () => localStorage.getItem('city') || ''
   );
-  const [fromDate, setFromDate] = useState<string>(() => localStorage.getItem('FROM_DATE') || '');
-  const [toDate, setToDate] = useState<string>(() => localStorage.getItem('TO_DATE') || '');
+  const [fromDate, setFromDate] = useState<string>(() => localStorage.getItem('TRAVEL_DATE') || '');
+  const [toDate, setToDate] = useState<string>(() => localStorage.getItem('RETURN_DATE') || '');
   const [numAdults, setNumAdults] = useState<number>(
     () => parseInt(localStorage.getItem('adults') || '0', 10)
   );

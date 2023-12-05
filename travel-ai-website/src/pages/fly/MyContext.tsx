@@ -1,6 +1,7 @@
 import React, { ReactNode, createContext, useContext, useState } from 'react';
 
 interface Item {
+  item: any;
   total_amount: string;
   total_currency: string;
   owner_name: string;

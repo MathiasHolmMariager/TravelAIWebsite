@@ -84,27 +84,6 @@ function MyComponent() {
           console.error("localStorage item 'KIDS' is null.");
         }
 
-        const dataTo = window.localStorage.getItem("TO");
-        if (dataTo !== null) {
-          localStorage.setItem("to_ticket", dataTo);
-        } else {
-          console.error("localStorage item 'TO' is null.");
-        }
-
-        const dataDateTo = window.localStorage.getItem("DATE_TO");
-        if (dataDateTo !== null) {
-          localStorage.setItem("date_to_ticket", dataDateTo);
-        } else {
-          console.error("localStorage item 'DATE_TO' is null.");
-        }
-    
-        const dataDateFrom = window.localStorage.getItem("DATE_FROM");
-        if (dataDateFrom !== null) {
-          localStorage.setItem("date_from_ticket", dataDateFrom);
-        } else {
-          console.error("localStorage item 'DATE_FROM' is null.");
-        }
-
         const sortedArray = result.data.map((item: any) => ({
           total_amount: item.total_amount,
           total_currency: item.total_currency,
