@@ -195,8 +195,8 @@ export default function HorizontalLinearStepper() {
         contentLabel="Confirmation Modal"
         style={{
           content: {
-            width: "400px",
-            height: "150px",
+            width: "500px",
+            height: "250px",
             margin: "auto",
           },
         }}
