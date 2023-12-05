@@ -230,7 +230,7 @@ export default function ReturnInput() {
                     height={"100px"}
                   />
                   <p className="loading-text">
-                    Loading things to do based on interests and city...
+                    Loading things to do based on your interests and location...
                   </p>
                 </div>
               )}
