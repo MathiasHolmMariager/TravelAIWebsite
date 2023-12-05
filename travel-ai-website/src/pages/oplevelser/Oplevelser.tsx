@@ -78,6 +78,13 @@ export default function ReturnInput() {
     fetchData();
   }, []);*/
 
+  React.useEffect (() => {
+    console.log("hej")
+  }, []);
+
+
+
+
   const [city] = useState(() => {
     const data = window.localStorage.getItem("city");
     return data !== null ? data : "";
@@ -161,6 +168,9 @@ export default function ReturnInput() {
   return (
     <div>
       <div className="overview">
+        <p>
+          <b>Your Trip Overview:</b>
+        </p>
         <p>
           <b>City:</b> {city}
         </p>
