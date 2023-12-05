@@ -4,17 +4,16 @@ import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-import { OpenAItest } from "../../OpenAI";
 import loading_animation from "../../assets/loading_animation.gif";
-import "./Oplevelser.css";
+import { OpenAItest } from "../../OpenAI";
 import { getInterestString } from "../../TripPrompt/InterestsPrompt";
+import { useState } from "react";
+import "./Oplevelser.css";
 
 interface Message {
   role: "User" | "Assistant";
   content: string;
 }
-
-// ... (existing imports and interfaces)
 
 export default function ReturnInput() {
   const [userInput, setUserInput] = React.useState<string>("");
@@ -50,7 +49,7 @@ export default function ReturnInput() {
     }
   };
 
-  React.useEffect(() => {
+  /*React.useEffect(() => {
     const fetchData = async () => {
       setInitialLoading(true); // Set initialLoading to true before starting useEffect loading
       try {
@@ -77,33 +76,128 @@ export default function ReturnInput() {
     };
 
     fetchData();
-  }, []);
+  }, []);*/
+
+  const [city] = useState(() => {
+    const data = window.localStorage.getItem('city');
+    return data !== null ? data : '';
+  });
+
+  const [price] = useState(() => {
+    const data = window.localStorage.getItem('FLIGHT_PRICE');
+    return data !== null ? data : '';
+  });
+
+  const [travelfrom] = useState(() => {
+    const data = window.localStorage.getItem('TRAVEL_FROM');
+    return data !== null ? data : '';
+  });
+
+  const [travelto] = useState(() => {
+    const data = window.localStorage.getItem('TRAVEL_TO');
+    return data !== null ? data : '';
+  });
+
+  const [traveldate] = useState(() => {
+    const data = window.localStorage.getItem('TRAVEL_DATE');
+    return data !== null ? data : '';
+  });
+
+  const [traveltimedepart] = useState(() => {
+    const data = window.localStorage.getItem('TRAVEL_DATE_TIME_DEPART');
+    return data !== null ? data : '';
+  });
+
+  const [traveltimearrive] = useState(() => {
+    const data = window.localStorage.getItem('TRAVEL_DATE_TIME_ARRIVE');
+    return data !== null ? data : '';
+  });
+
+  const [returnfrom] = useState(() => {
+    const data = window.localStorage.getItem('RETURN_FROM');
+    return data !== null ? data : '';
+  });
+
+  const [returnto] = useState(() => {
+    const data = window.localStorage.getItem('RETURN_TO');
+    return data !== null ? data : '';
+  });
+
+  const [returndate] = useState(() => {
+    const data = window.localStorage.getItem('RETURN_DATE');
+    return data !== null ? data : '';
+  });
+
+  const [returntimedepart] = useState(() => {
+    const data = window.localStorage.getItem('RETURN_DATE_TIME_DEPART');
+    return data !== null ? data : '';
+  });
+
+  const [returntimearrive] = useState(() => {
+    const data = window.localStorage.getItem('RETURN_DATE_TIME_ARRIVE');
+    return data !== null ? data : '';
+  });
+
+  const [accommodation] = useState(() => {
+    const data = window.localStorage.getItem('AccommodationType');
+    return data !== null ? data : '';
+  });
+
+  const [adults] = useState(() => {
+    const data = window.localStorage.getItem('adults');
+    return data !== null ? data : '';
+  });
+
+  const [kids] = useState(() => {
+    const data = window.localStorage.getItem('kids');
+    return data !== null ? data : '';
+  });
+
+  const [interests] = useState(() => {
+    const data = window.localStorage.getItem('adults');
+    return data !== null ? data : '';
+  });
 
   return (
+    <div>
+
+    <div className='overview'>
+      <p>
+        <b>City:</b> {city}
+      </p>
+      <p>
+        <b>Price:</b> {price}€
+      </p>
+      <p>
+      <b>Departure:</b> <br/>{travelfrom} ⟶ {travelto}
+        <br/>
+          {traveldate} 🕑 {traveltimedepart} - {traveltimearrive}
+      </p>
+      <p>
+        <b>Return:</b> <br/>{returnfrom} ⟶ {returnto}
+        <br/>
+          {returndate} 🕑 {returntimedepart} - {returntimearrive}
+      </p>
+      <p>
+        <b>Accommodation:</b> {accommodation}
+      </p>
+      <p>
+        <b>Adults:</b> {adults}
+      </p>
+      <p>
+        <b>Kids:</b> {kids}
+      </p>
+      <p>
+        <b>Interests:</b> {interests}
+      </p>
+    </div>
+
     <div className="gbtchat">
-      <Container component="main" maxWidth="md">
-        <CssBaseline />
-        {initialLoading && ( // Check initialLoading for useEffect loading
-          <Box
-            sx={{
-              marginTop: 8,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <img
-              src={loading_animation}
-              alt="Loading..."
-              width={"100px"}
-              height={"100px"}
-            />
-            <p className="loading-text">
-              Loading things to do based on interests and city...
-            </p>
-          </Box>
-        )}
-        {!initialLoading && ( // Display conversation history and form once useEffect loading is complete
+      <Container component="main" maxWidth="md"
+      sx={{
+        marginLeft:80
+      }}>
+        <CssBaseline/>
           <Box
             sx={{
               marginTop: 8,
@@ -133,7 +227,7 @@ export default function ReturnInput() {
                   fullWidth
                   id="UserInput"
                   name="UserInput"
-                  autoComplete="UserInput"
+                  autoComplete="Off"
                   autoFocus
                   value={userInput}
                   onChange={handleInputChange}
@@ -168,8 +262,9 @@ export default function ReturnInput() {
               </form>
             </div>
           </Box>
-        )}
       </Container>
     </div>
+
+  </div>  
   );
 }

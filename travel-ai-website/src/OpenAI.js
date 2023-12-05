@@ -19,5 +19,5 @@ export async function OpenAItest(prompt, conversationHistory = []) {
   conversationHistory.push({ role: "user", content: prompt });
   conversationHistory.push({ role: "assistant", content: assistantReply });
 
-  return { assistantReply, conversationHistory };
+  return { assistantReply, conversationHistory};
 }

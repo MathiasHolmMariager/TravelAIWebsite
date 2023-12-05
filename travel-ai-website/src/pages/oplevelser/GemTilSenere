@@ -1,0 +1,24 @@
+        {initialLoading && ( // Check initialLoading for useEffect loading
+          <div className="conversation-history">
+          <Box
+            sx={{
+              marginTop: 8,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <img
+              src={loading_animation}
+              alt="Loading..."
+              width={"100px"}
+              height={"100px"}
+            />
+            <p className="loading-text">
+              Loading things to do based on interests and city...
+            </p>
+          </Box>
+          </div>
+        )}
+
+        !initialLoading && ( // Display conversation history and form once useEffect loading is complete
