@@ -6,8 +6,8 @@ import { Outlet } from "react-router";
 
 //clear all storage when you close browser
 
-/*function App() {
-  useEffect(() => {
+function App() {
+  /*useEffect(() => {
     const handleBeforeUnload = () => {
 
       localStorage.clear();
