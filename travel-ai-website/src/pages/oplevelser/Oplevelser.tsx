@@ -7,7 +7,7 @@ import Container from "@mui/material/Container";
 import loading_animation from "../../assets/loading_animation.gif";
 import { OpenAItest } from "../../OpenAI";
 import { getInterestString } from "../../TripPrompt/InterestsPrompt";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./Oplevelser.css";
 
 interface Message {
@@ -28,6 +28,18 @@ export default function ReturnInput() {
     setUserInput(event.target.value);
   };
 
+  // Create a ref for the conversation history div
+  const conversationHistoryRef = useRef<HTMLDivElement | null>(null);
+
+  // Function to scroll down to the last index
+  const scrollToBottom = () => {
+    if (conversationHistoryRef.current) {
+      const lastMessage = conversationHistoryRef.current
+        .lastChild as HTMLDivElement;
+      lastMessage.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (userInput) {
@@ -46,12 +58,13 @@ export default function ReturnInput() {
         setUserOutput("Error occurred");
       }
       setIsLoading(false);
+      setUserInput('')
     }
   };
 
   /*React.useEffect(() => {
     const fetchData = async () => {
-      setInitialLoading(true); // Set initialLoading to true before starting useEffect loading
+      setInitialLoading(true); 
       try {
         const interests = getInterestString();
         const adults = localStorage.getItem("adults");
@@ -72,18 +85,21 @@ export default function ReturnInput() {
       } catch (error) {
         setUserOutput("Error occurred");
       }
-      setInitialLoading(false); // Set initialLoading to false after useEffect completes
+      setInitialLoading(false); 
     };
 
     fetchData();
   }, []);*/
 
-  React.useEffect (() => {
-    console.log("hej")
-  }, []);
+  useEffect(() => {
+    scrollToBottom();
+  }, [conversationHistory]);
 
-
-
+  useEffect(() => {
+    if (!isLoading) {
+      scrollToBottom();
+    }
+  }, [isLoading]);
 
   const [city] = useState(() => {
     const data = window.localStorage.getItem("city");
@@ -161,7 +177,7 @@ export default function ReturnInput() {
   });
 
   const [interests] = useState(() => {
-    const data = window.localStorage.getItem("adults");
+    const data = window.localStorage.getItem("generatedInterests");
     return data !== null ? data : "";
   });
 
@@ -235,7 +251,10 @@ export default function ReturnInput() {
                 </div>
               )}
               {!initialLoading && (
-                <div className="conversation-history">
+                <div
+                  className="conversation-history"
+                  ref={conversationHistoryRef}
+                >
                   {conversationHistory.map((message, index) => (
                     <div
                       key={index}
