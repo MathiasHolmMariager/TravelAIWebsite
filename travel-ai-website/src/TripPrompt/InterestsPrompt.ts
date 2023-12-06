@@ -37,7 +37,7 @@ export function getInterestString(): string {
   
   // Function to generate interest string
   function getInterestString(interestsArray: any[]) {
-    return `Your interests are ${interestsArray.join(', ')}`;
+    return `${interestsArray.join(', ')}`;
   }
   
   // Generate interest string using the combined interests

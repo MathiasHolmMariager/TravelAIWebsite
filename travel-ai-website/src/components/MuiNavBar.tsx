@@ -5,8 +5,9 @@ import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { useNavigate, useLocation } from "react-router-dom";
 import Modal from "react-modal";
+import { useNavigate, useLocation } from "react-router-dom";
+import { getInterestString } from "../../src/TripPrompt/InterestsPrompt";
 import { useState } from "react";
 
 const stepPaths = [
@@ -48,6 +49,9 @@ export default function HorizontalLinearStepper() {
       if (isStepSkipped(activeStep)) {
         newSkipped = new Set(newSkipped.values());
         newSkipped.delete(activeStep);
+      }
+      if (activeStep === 3){
+        getInterestString();
       }
 
       //##############uncomment for at ikke kunne trykke next##################
