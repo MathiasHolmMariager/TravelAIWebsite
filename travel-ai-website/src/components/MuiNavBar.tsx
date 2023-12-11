@@ -54,22 +54,15 @@ export default function HorizontalLinearStepper() {
         getInterestString();
       }
 
-      //##############uncomment for at ikke kunne trykke next##################
-      /*const cityValue = localStorage.getItem("city");
+      const cityValue = localStorage.getItem("city");
       if (activeStep === 1 && (cityValue === "" || cityValue === null)) {
         alert("Please select an flight before the next step");
       } else {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
         setSkipped(newSkipped);
         navigate(stepPaths[activeStep + 1]);
-      }*/
-      //#############slet det her###############################################
-      setActiveStep((prevActiveStep) => prevActiveStep + 1);
-        setSkipped(newSkipped);
-        navigate(stepPaths[activeStep + 1]);
-      //#########################################################################
+      }
     }
-
   };
 
   const handleBack = () => {
@@ -200,18 +193,20 @@ export default function HorizontalLinearStepper() {
         style={{
           content: {
             width: "500px",
-            height: "250px",
+            height: "200px",
             margin: "auto",
+            textAlign: "center",
+            fontWeight: "bold"
           },
         }}
       >
         <div>
-          <p style={{ margin: "20px" }}>Are you finish?</p>
-          <button style={{ margin: "10px" }} onClick={handleModalNo}>
-            No, I'm Danish
+          <p style={{ margin: "20px" }}>Are you finished?</p>
+          <button style={{ margin: "10px" , backgroundColor: "rgb(209, 235, 198)",}} onClick={handleModalYes}>
+            Yes, I'm done
           </button>
-          <button style={{ margin: "10px" }} onClick={handleModalYes}>
-            Yes, I'm finished
+          <button style={{ margin: "10px", backgroundColor: "#e1e1e1" }} onClick={handleModalNo}>
+            No, I'm not done
           </button>
         </div>
       </Modal>
