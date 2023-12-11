@@ -1,5 +1,5 @@
 // Accom.tsx
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef  } from "react";
 import {
   FormControl,
   MenuItem,
@@ -299,6 +299,11 @@ function Accom() {
       setIsLoading(false);
       localStorage.setItem("city", city);
       setLocalStorage_city(city);
+
+      const firstItemElement = document.querySelector(".list-container-items");
+      if (firstItemElement) {
+        firstItemElement.scrollIntoView({ behavior: "smooth" });
+      }
     }, 1000);
   };
 
@@ -308,6 +313,8 @@ function Accom() {
     localStorage.setItem("HOTEL_PRICE", price);
     setSelectedPrice(price);
   };
+
+  const listContainerRef = useRef(null);
 
   const adult = parseInt(localStorage_adult, 10);
   const kids = parseInt(localStorage_kids, 10);
@@ -429,7 +436,7 @@ function Accom() {
 
       <div className="Search-result">
         {showList && (
-          <Box className="list-container">
+          <Box className="list-container" ref={listContainerRef}>
             {lists[selectedOption].map((accommodation, index) => (
               <div className="list-container-items">
                 <Box key={index}>
