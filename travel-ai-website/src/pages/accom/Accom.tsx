@@ -21,6 +21,13 @@ import hotelbilledetre from "../../assets/hotel-billede_3.jpg";
 import hotelbilledefire from "../../assets/hotel-billede_4.jpg";
 import hotelbilledefem from "../../assets/hotel-billede_5.jpg";
 import hotelbilledeseks from "../../assets/hotel-billede_6.jpg";
+import campbilledeet from "../../assets/billede_camp.jpg";
+import campbilledeto from "../../assets/billede_camp_2.jpg";
+import campbilledetre from "../../assets/billede_camp_3.jpg";
+import campbilledefire from "../../assets/billede_camp_4.jpg";
+import campbilledefem from "../../assets/billede_camp_5.jpg";
+import campbilledeseks from "../../assets/billede_camp6.jpg";
+
 interface Accommodation {
   name: string;
   description: string;
@@ -230,7 +237,7 @@ function Accom() {
         description: "Experience the outdoors with a camping adventure.",
         price: "152,95",
         id: "19",
-        img: hotelbilledefem,
+        img: campbilledeet,
         rating: "8.5 Rating"
       },
       {
@@ -238,7 +245,7 @@ function Accom() {
         description: "Experience the outdoors with a camping adventure.",
         price: "93,95",
         id: "20",
-        img: hotelbilledefire,
+        img: campbilledeto,
         rating: "7.4 Rating"
       },
       {
@@ -246,7 +253,7 @@ function Accom() {
         description: "Experience the outdoors with a camping adventure.",
         price: "231,95",
         id: "21",
-        img: hotelbilledetre,
+        img: campbilledetre,
         rating: "6.9 Rating"
       },
       {
@@ -254,7 +261,7 @@ function Accom() {
         description: "Experience the outdoors with a camping adventure.",
         price: "174,95",
         id: "22",
-        img: hotelbilledeto,
+        img: campbilledefire,
         rating: "4.5 Rating"
       },
       {
@@ -262,7 +269,7 @@ function Accom() {
         description: "Experience the outdoors with a camping adventure.",
         price: "197,95",
         id: "23",
-        img: hotelbillede,
+        img: campbilledefem,
         rating: "9.7 Rating"
       },
       {
@@ -270,7 +277,7 @@ function Accom() {
         description: "Experience the outdoors with a camping adventure.",
         price: "164,95",
         id: "24",
-        img: hotelbilledeseks,
+        img: campbilledeseks,
         rating: "8.4 Rating"
       },
     ],
