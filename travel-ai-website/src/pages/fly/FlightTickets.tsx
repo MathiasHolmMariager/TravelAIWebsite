@@ -164,6 +164,10 @@ function FlightsComponent() {
                       color="primary"
                       onClick={() => handleSaveButtonClick(item.id)}
                       disabled={saveButtonStates[item.id]} 
+                      style={{
+                        height: "50px",
+                        width: "130px",
+                      }}
                     >
                       {saveButtonStates[item.id] ? "Saved" : "Save flight"}
                     </Button>

@@ -58,24 +58,38 @@ export default function ReturnInput() {
         setUserOutput("Error occurred");
       }
       setIsLoading(false);
-      setUserInput('')
+      setUserInput("");
     }
   };
 
   /*React.useEffect(() => {
     const fetchData = async () => {
-      setInitialLoading(true); 
+      setInitialLoading(true);
       try {
         const interests = getInterestString();
         const adults = localStorage.getItem("adults");
         const kids = localStorage.getItem("kids");
         const city = localStorage.getItem("city");
 
-        const fullPrompt = `We are ${adults} adults and ${kids} kids going on a trip to ${city}. ${interests} What are some things we could do in the city that fit our interests? I want you to give me the things to do as a numbered list and please just only give me the list with a small description for each thing to do.`;
+        const fullPrompt = `We are ${adults} adults and ${kids} kids going on a trip to ${city}. ${interests} What are some things we could do in the city that fit our interests? I want you to give me the things to do as a numbered list and please just only give me the list with a small description for each thing to do. Please refrain from adding any extra information, notes, or final statements. Thank you.`;
 
         const { assistantReply, conversationHistory: updatedHistory } =
           await OpenAItest(fullPrompt);
-        setConversationHistory(updatedHistory);
+
+          const originalContent = updatedHistory[1].content;
+          const formattedString = originalContent.replace(/\d+[.]/g, '<br><br>$&');
+          const additionalSentence = "Here are some things you can do based on your interest and location:";
+          const updatedContent = `${additionalSentence}${formattedString}`;
+          const updatedItem = { ...updatedHistory[1], content: updatedContent };
+
+          const updatedHistoryCopy = [...updatedHistory];
+          updatedHistoryCopy[1] = updatedItem;
+
+        setConversationHistory(updatedHistoryCopy);
+
+        const itemsArray = formattedString.split(/\d+\./).filter((item: string) => item.trim() !== '');
+        localStorage.setItem("itemsArray", JSON.stringify(itemsArray));
+
 
         if (assistantReply !== null) {
           setUserOutput(assistantReply);
@@ -85,7 +99,7 @@ export default function ReturnInput() {
       } catch (error) {
         setUserOutput("Error occurred");
       }
-      setInitialLoading(false); 
+      setInitialLoading(false);
     };
 
     fetchData();
@@ -261,8 +275,8 @@ export default function ReturnInput() {
                       className={
                         index % 2 === 0 ? "user-message" : "assistant-message"
                       }
+                      dangerouslySetInnerHTML={{ __html: message.content }}
                     >
-                      {message.content}
                     </div>
                   ))}
                 </div>

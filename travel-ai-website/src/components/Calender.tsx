@@ -58,7 +58,7 @@ function Calender() {
         <div style={{ margin: '0 10px', width: '150px' }}>
           <DatePicker
             label="FROM"
-            format="M/D/YYYY"
+            format="D/M/YYYY"
             slotProps={{ field: { shouldRespectLeadingZeros: true } }}
             value={fromDate}
             onChange={handleFromDateChange}
@@ -69,7 +69,7 @@ function Calender() {
         <div style={{ margin: '0 10px', width: '150px'}}>
           <DatePicker
             label="TO"
-            format="M/D/YYYY"
+            format="D/M/YYYY"
             slotProps={{ field: { shouldRespectLeadingZeros: true } }}
             value={toDate}
             minDate={fromDate.add(1, 'day')}

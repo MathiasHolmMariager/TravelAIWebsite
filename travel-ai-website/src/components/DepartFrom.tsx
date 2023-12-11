@@ -8,8 +8,8 @@ import ListItemText from "@mui/material/ListItemText";
 import { airportDataEU } from "./AirportEU";
 
 const DepartFromInput = () => {
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const suggestionsRef = useRef<HTMLDivElement | null>(null);
+  const containerRefFROM = useRef<HTMLDivElement | null>(null);
+  const suggestionsRefFROM = useRef<HTMLDivElement | null>(null);
 
   const [inputValue, setInputValue] = useState("");
   const [suggestions, setSuggestions] = useState<
@@ -100,8 +100,8 @@ const DepartFromInput = () => {
     }
     const handleDocumentMouseDown = (e: MouseEvent) => {
       if (
-        (containerRef.current && containerRef.current.contains(e.target as Node)) ||
-        (suggestionsRef.current && suggestionsRef.current.contains(e.target as Node))
+        (containerRefFROM.current && containerRefFROM.current.contains(e.target as Node)) ||
+        (suggestionsRefFROM.current && suggestionsRefFROM.current.contains(e.target as Node))
       ) {
         return;
       }
@@ -149,7 +149,7 @@ const DepartFromInput = () => {
         />
         {suggestions.length > 0 && (
           <div
-            ref={suggestionsRef}
+            ref={suggestionsRefFROM}
             style={{
               position: "absolute",
               top: "90%", 

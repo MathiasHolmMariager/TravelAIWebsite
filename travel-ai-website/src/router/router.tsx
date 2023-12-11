@@ -4,6 +4,8 @@ import Oplevelser from "../pages/oplevelser/Oplevelser";
 import Home from "../pages/Home/Home";
 import App from "../App";
 import Persons from "../pages/persons/Persons";
+import Overview from "../pages/overview/Overview";
+import Accom from "../pages/accom/accom";
 // installere fra react-router-dom
 // installere fra react-router
 import { createBrowserRouter } from "react-router-dom";
@@ -18,6 +20,8 @@ export const router = createBrowserRouter([
       { path: "accommodation", element: <Hotel /> },
       { path: "Interrest", element: <Persons /> },
       { path: "experiences", element: <Oplevelser /> },
+      { path: "overview", element: <Overview /> },
+      { path: "accom", element: <Accom /> },
     ],
   },
 ]);
