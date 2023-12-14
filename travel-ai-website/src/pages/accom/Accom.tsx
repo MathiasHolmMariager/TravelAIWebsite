@@ -86,7 +86,7 @@ function Accom() {
       {
         name: "Velvet Horizon Inn",
         description: "Luxurious accommodations with various amenities.",
-        price: "421,95",
+        price: "421.95",
         id: "1",
         img: hotelbillede,
         rating: "8.4 Rating",
@@ -95,7 +95,7 @@ function Accom() {
       {
         name: "Tranquil Haven Suites",
         description: "Luxurious accommodations with various amenities.",
-        price: "398,50",
+        price: "398.50",
         id: "2",
         img: hotelbilledeto,
         rating: "7.3 Rating",
@@ -104,7 +104,7 @@ function Accom() {
       {
         name: "Celestial Oasis Hotel",
         description: "Luxurious accommodations with various amenities.",
-        price: "563,95",
+        price: "563.95",
         id: "3",
         img: hotelbilledetre,
         rating: "7.8 Rating",
@@ -113,7 +113,7 @@ function Accom() {
       {
         name: "Sapphire Skies Lodge",
         description: "Luxurious accommodations with various amenities.",
-        price: "346,95",
+        price: "346.95",
         id: "4",
         img: hotelbilledefire,
         rating: "8.9 Rating",
@@ -122,7 +122,7 @@ function Accom() {
       {
         name: "Whispering Pines Retreat",
         description: "Luxurious accommodations with various amenities.",
-        price: "613,95",
+        price: "613.95",
         id: "5",
         img: hotelbilledefem,
         rating: "9.2 Rating",
@@ -131,7 +131,7 @@ function Accom() {
       {
         name: "Mystic Meadows Inn",
         description: "Luxurious accommodations with various amenities.",
-        price: "472,95",
+        price: "472.95",
         id: "6",
         img: hotelbilledeseks,
         rating: "8.7 Rating",
@@ -142,7 +142,7 @@ function Accom() {
       {
         name: "Urban Nomad Hostel",
         description: "Budget-friendly accommodations with shared facilities.",
-        price: "164,95",
+        price: "164.95",
         id: "7",
         img: hotelbilledeseks,
         rating: "5.4 Rating",
@@ -151,7 +151,7 @@ function Accom() {
       {
         name: "Backpacker's Den",
         description: "Budget-friendly accommodations with shared facilities.",
-        price: "103,95",
+        price: "103.95",
         id: "8",
         img: hotelbilledefem,
         rating: "6.4 Rating",
@@ -160,7 +160,7 @@ function Accom() {
       {
         name: "Bohemian Bunkhouse",
         description: "Budget-friendly accommodations with shared facilities.",
-        price: "124,95",
+        price: "124.95",
         id: "9",
         img: hotelbilledefire,
         rating: "8.3 Rating",
@@ -169,7 +169,7 @@ function Accom() {
       {
         name: "Wanderlust Haven Hostel",
         description: "Budget-friendly accommodations with shared facilities.",
-        price: "153,95",
+        price: "153.95",
         id: "10",
         img: hotelbilledetre,
         rating: "8.4 Rating",
@@ -178,7 +178,7 @@ function Accom() {
       {
         name: "Nomad's Nook",
         description: "Budget-friendly accommodations with shared facilities.",
-        price: "157,95",
+        price: "157.95",
         id: "11",
         img: hotelbilledeto,
         rating: "7.3 Rating",
@@ -187,7 +187,7 @@ function Accom() {
       {
         name: "Budget Explorer Inn",
         description: "Budget-friendly accommodations with shared facilities.",
-        price: "73,95",
+        price: "73.95",
         id: "12",
         img: hotelbillede,
         rating: "5.4 Rating",
@@ -198,7 +198,7 @@ function Accom() {
       {
         name: "Cityscape Residences",
         description: "Rent a cozy apartment for a homely feel.",
-        price: "654,95",
+        price: "654.95",
         id: "13",
         img: hotelbilledetre,
         rating: "9.2 Rating",
@@ -207,7 +207,7 @@ function Accom() {
       {
         name: "Metro Haven Apartments",
         description: "Rent a cozy apartment for a homely feel.",
-        price: "573,95",
+        price: "573.95",
         id: "14",
         img: hotelbilledefire,
         rating: "7.8 Rating",
@@ -216,7 +216,7 @@ function Accom() {
       {
         name: "Serenity Springs Suites",
         description: "Rent a cozy apartment for a homely feel.",
-        price: "478,95",
+        price: "478.95",
         id: "15",
         img: hotelbilledefem,
         rating: "7.9 Rating",
@@ -225,7 +225,7 @@ function Accom() {
       {
         name: "Cosmopolitan Lofts",
         description: "Rent a cozy apartment for a homely feel.",
-        price: "394,95",
+        price: "394.95",
         id: "16",
         img: hotelbilledeseks,
         rating: "6.6 Rating",
@@ -234,7 +234,7 @@ function Accom() {
       {
         name: "Vista View Residences",
         description: "Rent a cozy apartment for a homely feel.",
-        price: "412,95",
+        price: "412.95",
         id: "17",
         img: hotelbillede,
         rating: "7.2 Rating",
@@ -243,7 +243,7 @@ function Accom() {
       {
         name: "Harmony Heights Apartments",
         description: "Rent a cozy apartment for a homely feel.",
-        price: "964,95",
+        price: "964.95",
         id: "18",
         img: hotelbilledeto,
         rating: "4.3 Rating",
@@ -254,7 +254,7 @@ function Accom() {
       {
         name: "Pinecrest Pines Campground",
         description: "Experience the outdoors with a camping adventure.",
-        price: "152,95",
+        price: "152.95",
         id: "19",
         img: campbilledeet,
         rating: "8.5 Rating",
@@ -263,7 +263,7 @@ function Accom() {
       {
         name: "Lakeside Oasis Campgrounds",
         description: "Experience the outdoors with a camping adventure.",
-        price: "93,95",
+        price: "93.95",
         id: "20",
         img: campbilledeto,
         rating: "7.4 Rating",
@@ -272,7 +272,7 @@ function Accom() {
       {
         name: "Wilderness Haven Campsites",
         description: "Experience the outdoors with a camping adventure.",
-        price: "231,95",
+        price: "231.95",
         id: "21",
         img: campbilledetre,
         rating: "6.9 Rating",
@@ -281,7 +281,7 @@ function Accom() {
       {
         name: "Tranquil Trails Campground",
         description: "Experience the outdoors with a camping adventure.",
-        price: "174,95",
+        price: "174.95",
         id: "22",
         img: campbilledefire,
         rating: "4.5 Rating",
@@ -290,7 +290,7 @@ function Accom() {
       {
         name: "Sunset Ridge Campgrounds",
         description: "Experience the outdoors with a camping adventure.",
-        price: "197,95",
+        price: "197.95",
         id: "23",
         img: campbilledefem,
         rating: "9.7 Rating",
@@ -299,7 +299,7 @@ function Accom() {
       {
         name: "Whispering Woods Campsite",
         description: "Experience the outdoors with a camping adventure.",
-        price: "164,95",
+        price: "164.95",
         id: "24",
         img: campbilledeseks,
         rating: "8.4 Rating",

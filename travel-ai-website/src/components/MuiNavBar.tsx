@@ -14,11 +14,11 @@ const stepPaths = [
   "/",
   "/flight",
   "/accommodation",
-  "/interrest",
+  "/interest",
   "/experiences",
 ];
 
-const stepNames = ["Home", "Flight", "Accommodation", "Interrest", "Experiences"];
+const stepNames = ["Home", "Flight", "Accommodation", "Interest", "Experiences"];
 
 const STORAGE_KEY = "CURRENT_PAGE_STEP";
 
