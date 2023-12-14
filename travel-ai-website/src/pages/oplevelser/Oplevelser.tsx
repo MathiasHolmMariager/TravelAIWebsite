@@ -62,7 +62,7 @@ export default function ReturnInput() {
     }
   };
 
-  /*React.useEffect(() => {
+  React.useEffect(() => {
     const fetchData = async () => {
       setInitialLoading(true);
       try {
@@ -71,7 +71,12 @@ export default function ReturnInput() {
         const kids = localStorage.getItem("kids");
         const city = localStorage.getItem("city");
 
-        const fullPrompt = `We are ${adults} adults and ${kids} kids going on a trip to ${city}. ${interests} What are some things we could do in the city that fit our interests? I want you to give me the things to do as a numbered list and please just only give me the list with a small description for each thing to do. Please refrain from adding any extra information, notes, or final statements. Thank you.`;
+        const fullPrompt = 
+        `We are ${adults} adults and ${kids} kids going on a trip to ${city}. 
+        ${interests} What are some things we could do in the city that fit our interests? 
+        I want you to give me the things to do as a numbered list and please just only give me the list 
+        with a small description for each thing to do. 
+        Please refrain from adding any extra information, notes, or final statements. Thank you.`;
 
         const { assistantReply, conversationHistory: updatedHistory } =
           await OpenAItest(fullPrompt);
@@ -90,7 +95,6 @@ export default function ReturnInput() {
         const itemsArray = formattedString.split(/\d+\./).filter((item: string) => item.trim() !== '');
         localStorage.setItem("itemsArray", JSON.stringify(itemsArray));
 
-
         if (assistantReply !== null) {
           setUserOutput(assistantReply);
         } else {
@@ -103,7 +107,7 @@ export default function ReturnInput() {
     };
 
     fetchData();
-  }, []);*/
+  }, []);
 
   useEffect(() => {
     scrollToBottom();
