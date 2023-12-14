@@ -223,7 +223,7 @@ export default function ReturnInput() {
           <b>City:</b> {city}
         </p>
         <p>
-          <b>Price:</b> {total_price} EUR
+          <b>Total Price:</b> {total_price} EUR
         </p>
         <p>
           <b>Departure:</b> <br />
