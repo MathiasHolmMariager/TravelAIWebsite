@@ -55,13 +55,17 @@ export default function HorizontalLinearStepper() {
       }
 
       const cityValue = localStorage.getItem("city");
+      const accomValue = localStorage.getItem("AccommodationType");
       if (activeStep === 1 && (cityValue === "" || cityValue === null)) {
         alert("Please select an flight before the next step");
-      } else {
+      } else if (activeStep === 2 && (accomValue === "" || accomValue === null)) {
+        alert("Please select an Accommodation before the next step");
+      }else {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
         setSkipped(newSkipped);
         navigate(stepPaths[activeStep + 1]);
       }
+      
     }
   };
 

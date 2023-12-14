@@ -35,6 +35,7 @@ interface Accommodation {
   id: string;
   img: string;
   rating: string;
+  type: string;
 }
 
 interface Lists {
@@ -88,7 +89,8 @@ function Accom() {
         price: "421,95",
         id: "1",
         img: hotelbillede,
-        rating: "8.4 Rating"
+        rating: "8.4 Rating",
+        type: "Hotel",
       },
       {
         name: "Tranquil Haven Suites",
@@ -96,7 +98,8 @@ function Accom() {
         price: "398,50",
         id: "2",
         img: hotelbilledeto,
-        rating: "7.3 Rating"
+        rating: "7.3 Rating",
+        type: "Hotel",
       },
       {
         name: "Celestial Oasis Hotel",
@@ -104,7 +107,8 @@ function Accom() {
         price: "563,95",
         id: "3",
         img: hotelbilledetre,
-        rating: "7.8 Rating"
+        rating: "7.8 Rating",
+        type: "Hotel",
       },
       {
         name: "Sapphire Skies Lodge",
@@ -112,7 +116,8 @@ function Accom() {
         price: "346,95",
         id: "4",
         img: hotelbilledefire,
-        rating: "8.9 Rating"
+        rating: "8.9 Rating",
+        type: "Hotel",
       },
       {
         name: "Whispering Pines Retreat",
@@ -120,7 +125,8 @@ function Accom() {
         price: "613,95",
         id: "5",
         img: hotelbilledefem,
-        rating: "9.2 Rating"
+        rating: "9.2 Rating",
+        type: "Hotel",
       },
       {
         name: "Mystic Meadows Inn",
@@ -128,7 +134,8 @@ function Accom() {
         price: "472,95",
         id: "6",
         img: hotelbilledeseks,
-        rating: "8.7 Rating"
+        rating: "8.7 Rating",
+        type: "Hotel",
       },
     ],
     option2: [
@@ -138,7 +145,8 @@ function Accom() {
         price: "164,95",
         id: "7",
         img: hotelbilledeseks,
-        rating: "5.4 Rating"
+        rating: "5.4 Rating",
+        type: "Hostel",
       },
       {
         name: "Backpacker's Den",
@@ -146,7 +154,8 @@ function Accom() {
         price: "103,95",
         id: "8",
         img: hotelbilledefem,
-        rating: "6.4 Rating"
+        rating: "6.4 Rating",
+        type: "Hostel",
       },
       {
         name: "Bohemian Bunkhouse",
@@ -154,7 +163,8 @@ function Accom() {
         price: "124,95",
         id: "9",
         img: hotelbilledefire,
-        rating: "8.3 Rating"
+        rating: "8.3 Rating",
+        type: "Hostel",
       },
       {
         name: "Wanderlust Haven Hostel",
@@ -162,7 +172,8 @@ function Accom() {
         price: "153,95",
         id: "10",
         img: hotelbilledetre,
-        rating: "8.4 Rating"
+        rating: "8.4 Rating",
+        type: "Hostel",
       },
       {
         name: "Nomad's Nook",
@@ -170,7 +181,8 @@ function Accom() {
         price: "157,95",
         id: "11",
         img: hotelbilledeto,
-        rating: "7.3 Rating"
+        rating: "7.3 Rating",
+        type: "Hostel",
       },
       {
         name: "Budget Explorer Inn",
@@ -178,7 +190,8 @@ function Accom() {
         price: "73,95",
         id: "12",
         img: hotelbillede,
-        rating: "5.4 Rating"
+        rating: "5.4 Rating",
+        type: "Hostel",
       },
     ],
     option3: [
@@ -188,7 +201,8 @@ function Accom() {
         price: "654,95",
         id: "13",
         img: hotelbilledetre,
-        rating: "9.2 Rating"
+        rating: "9.2 Rating",
+        type: "Apartment",
       },
       {
         name: "Metro Haven Apartments",
@@ -196,7 +210,8 @@ function Accom() {
         price: "573,95",
         id: "14",
         img: hotelbilledefire,
-        rating: "7.8 Rating"
+        rating: "7.8 Rating",
+        type: "Apartment",
       },
       {
         name: "Serenity Springs Suites",
@@ -204,7 +219,8 @@ function Accom() {
         price: "478,95",
         id: "15",
         img: hotelbilledefem,
-        rating: "7.9 Rating"
+        rating: "7.9 Rating",
+        type: "Apartment",
       },
       {
         name: "Cosmopolitan Lofts",
@@ -212,7 +228,8 @@ function Accom() {
         price: "394,95",
         id: "16",
         img: hotelbilledeseks,
-        rating: "6.6 Rating"
+        rating: "6.6 Rating",
+        type: "Apartment",
       },
       {
         name: "Vista View Residences",
@@ -220,7 +237,8 @@ function Accom() {
         price: "412,95",
         id: "17",
         img: hotelbillede,
-        rating: "7.2 Rating"
+        rating: "7.2 Rating",
+        type: "Apartment",
       },
       {
         name: "Harmony Heights Apartments",
@@ -228,7 +246,8 @@ function Accom() {
         price: "964,95",
         id: "18",
         img: hotelbilledeto,
-        rating: "4.3 Rating"
+        rating: "4.3 Rating",
+        type: "Apartment",
       },
     ],
     option4: [
@@ -238,7 +257,8 @@ function Accom() {
         price: "152,95",
         id: "19",
         img: campbilledeet,
-        rating: "8.5 Rating"
+        rating: "8.5 Rating",
+        type: "Campsite",
       },
       {
         name: "Lakeside Oasis Campgrounds",
@@ -246,7 +266,8 @@ function Accom() {
         price: "93,95",
         id: "20",
         img: campbilledeto,
-        rating: "7.4 Rating"
+        rating: "7.4 Rating",
+        type: "Campsite",
       },
       {
         name: "Wilderness Haven Campsites",
@@ -254,7 +275,8 @@ function Accom() {
         price: "231,95",
         id: "21",
         img: campbilledetre,
-        rating: "6.9 Rating"
+        rating: "6.9 Rating",
+        type: "Campsite",
       },
       {
         name: "Tranquil Trails Campground",
@@ -262,7 +284,8 @@ function Accom() {
         price: "174,95",
         id: "22",
         img: campbilledefire,
-        rating: "4.5 Rating"
+        rating: "4.5 Rating",
+        type: "Campsite",
       },
       {
         name: "Sunset Ridge Campgrounds",
@@ -270,7 +293,8 @@ function Accom() {
         price: "197,95",
         id: "23",
         img: campbilledefem,
-        rating: "9.7 Rating"
+        rating: "9.7 Rating",
+        type: "Campsite",
       },
       {
         name: "Whispering Woods Campsite",
@@ -278,7 +302,8 @@ function Accom() {
         price: "164,95",
         id: "24",
         img: campbilledeseks,
-        rating: "8.4 Rating"
+        rating: "8.4 Rating",
+        type: "Campsite",
       },
     ],
   };
@@ -309,8 +334,10 @@ function Accom() {
 
   const [selectedPrice, setSelectedPrice] = useState<string | null>(null);
 
-  const handleSavePrice = (price: string) => {
+  const handleSavePrice = (price: string, type: string, name: string) => {
     localStorage.setItem("HOTEL_PRICE", price);
+    localStorage.setItem("AccommodationType", type);
+    localStorage.setItem("AccommodationName", name);
     setSelectedPrice(price);
   };
 
@@ -453,7 +480,9 @@ function Accom() {
                   </Typography>
                   <Typography variant="body1">{localStorage_city}</Typography>
                   <Typography variant="body1">{`${total} Persons`}</Typography>
-                  <Typography variant="body1" sx={{mt: "70px", border: "solid", width: "75px", padding: "5px", borderRadius: "5px", borderColor: "gray"}}>{accommodation.rating}</Typography>
+                  <Typography variant="body1">{`From: ${localStorage_from}`}</Typography>
+                  <Typography variant="body1">{`To: ${localStorage_to}`}</Typography>
+                  <Typography variant="body1" sx={{mt: "22px", border: "solid", width: "75px", padding: "5px", borderRadius: "5px", borderColor: "gray"}}>{accommodation.rating}</Typography>
                   </div>
                   <p className="price-hotel">
                     Total price:
@@ -462,7 +491,7 @@ function Accom() {
                   </p>
                   <p className="save-hotel">
                     <Button
-                      onClick={() => handleSavePrice(accommodation.price)}
+                      onClick={() => handleSavePrice(accommodation.price, accommodation.type, accommodation.name)}
                       disabled={selectedPrice === accommodation.price}
                       color="primary"
                       variant="contained"
@@ -473,7 +502,7 @@ function Accom() {
                     >
                       {selectedPrice === accommodation.price
                         ? "Saved"
-                        : "Save hotel"}
+                        : `Save ${accommodation.type}`}
                     </Button>
                   </p>
                 </Box>

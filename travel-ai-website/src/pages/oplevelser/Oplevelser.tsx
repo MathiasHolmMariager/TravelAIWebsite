@@ -87,7 +87,7 @@ export default function ReturnInput() {
 
         setConversationHistory(updatedHistoryCopy);
 
-        const itemsArray = formattedString.split(/\d+\./).filter((item: string) => item.trim() !== '');
+        const itemsArray = originalContent.split(/\d+\./).filter((item: string) => item.trim() !== '');
         localStorage.setItem("itemsArray", JSON.stringify(itemsArray));
 
 
@@ -180,6 +180,11 @@ export default function ReturnInput() {
     return data !== null ? data : "";
   });
 
+  const [accommodationName] = useState(() => {
+    const data = window.localStorage.getItem("AccommodationName");
+    return data !== null ? data : "";
+  });
+
   const [adults] = useState(() => {
     const data = window.localStorage.getItem("adults");
     return data !== null ? data : "";
@@ -205,7 +210,7 @@ export default function ReturnInput() {
           <b>City:</b> {city}
         </p>
         <p>
-          <b>Price:</b> {price}€
+          <b>Price:</b> {price} EUR
         </p>
         <p>
           <b>Departure:</b> <br />
@@ -220,7 +225,7 @@ export default function ReturnInput() {
           {returndate} 🕑 {returntimedepart} - {returntimearrive}
         </p>
         <p>
-          <b>Accommodation:</b> {accommodation}
+          <b>Accommodation:</b><br />{accommodationName}{" ("}{accommodation}{")"}
         </p>
         <p>
           <b>Adults:</b> {adults}
