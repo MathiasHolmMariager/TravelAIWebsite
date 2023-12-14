@@ -120,10 +120,19 @@ export default function ReturnInput() {
     return data !== null ? data : "";
   });
 
-  const [price] = useState(() => {
+  const [local_flight_price] = useState(() => {
     const data = window.localStorage.getItem("FLIGHT_PRICE");
     return data !== null ? data : "";
   });
+
+  const [local_hotel_price] = useState(() => {
+    const data = window.localStorage.getItem("HOTEL_PRICE");
+    return data !== null ? data : "";
+  });
+
+  const flight_price = parseFloat(local_flight_price);
+  const hotel_price = parseFloat(local_hotel_price);
+  const total_price = flight_price + hotel_price;
 
   const [travelfrom] = useState(() => {
     const data = window.localStorage.getItem("TRAVEL_FROM");
@@ -205,7 +214,7 @@ export default function ReturnInput() {
           <b>City:</b> {city}
         </p>
         <p>
-          <b>Price:</b> {price}€
+          <b>Price:</b> {total_price}€
         </p>
         <p>
           <b>Departure:</b> <br />
