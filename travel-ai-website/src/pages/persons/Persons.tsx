@@ -88,7 +88,7 @@ export default function CheckboxList() {
 
   return (
     <div>
-      <p className="title">What are your interrests?</p>
+      <p className="title">What are your interests?</p>
       <div className="persons-container-wrapper">
         <div className="persons-container">
           {listNames.map((listName, listIndex) => (
