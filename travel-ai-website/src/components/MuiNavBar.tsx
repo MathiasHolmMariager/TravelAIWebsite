@@ -136,14 +136,21 @@ export default function HorizontalLinearStepper() {
       <React.Fragment>
         {activeStep !== 0 && (
           <Button
-            color="inherit"
             disabled={activeStep === 0}
             onClick={handleBack}
             sx={{
-              height: "40px",
+              height: "60px",
               width: "10%",
               fontSize: "20px",
-              marginTop: "20px",
+              marginTop: "10px",
+              border: "solid",
+              backgroundColor: "white",
+              marginRight: "30px",
+              borderRadius: "15px",
+              borderWidth: "3px",
+              '&:hover': {
+                backgroundColor: "white",
+              }
             }}
           >
             Back
@@ -180,10 +187,18 @@ export default function HorizontalLinearStepper() {
           <Button
             onClick={handleNext}
             sx={{
-              height: "40px",
+              height: "60px",
               width: "10%",
               fontSize: "20px",
-              marginTop: "20px"
+              marginTop: "10px",
+              border: "solid",
+              backgroundColor: "white",
+              marginLeft: "30px",
+              borderRadius: "15px",
+              borderWidth: "3px",
+              '&:hover': {
+                backgroundColor: "white",
+              }
             }}
           >
             {activeStep === stepPaths.length - 1 ? "Finish" : "Next"}
