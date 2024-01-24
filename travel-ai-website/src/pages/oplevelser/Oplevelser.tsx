@@ -9,6 +9,7 @@ import { OpenAItest } from "../../OpenAI";
 import { getInterestString } from "../../TripPrompt/InterestsPrompt";
 import { useEffect, useRef, useState } from "react";
 import "./Oplevelser.css";
+import { Style } from "@mui/icons-material";
 
 interface Message {
   role: "User" | "Assistant";
@@ -16,6 +17,10 @@ interface Message {
 }
 
 export default function ReturnInput() {
+
+  const [savedItems, setSavedItems] = useState([]);
+  const [list, setList] = useState([]);
+
   const [userInput, setUserInput] = React.useState<string>("");
   const [userOutput, setUserOutput] = React.useState<string>("");
   const [conversationHistory, setConversationHistory] = React.useState<
@@ -81,13 +86,19 @@ export default function ReturnInput() {
         const { assistantReply, conversationHistory: updatedHistory } =
           await OpenAItest(fullPrompt);
 
+          const question = 
+          `We are ${adults} adults and ${kids} kids going on a trip to ${city}. 
+          ${interests} What are some things we could do in the city that fit our interests?`;
+
           const originalContent = updatedHistory[1].content;
           const formattedString = originalContent.replace(/\d+[.]/g, '<br><br>$&');
           const additionalSentence = "Here are some things you can do based on your interest and location:";
           const updatedContent = `${additionalSentence}${formattedString}`;
+          const updatedItemQuest = { ...updatedHistory[0], content: question };
           const updatedItem = { ...updatedHistory[1], content: updatedContent };
 
           const updatedHistoryCopy = [...updatedHistory];
+          updatedHistoryCopy[0] = updatedItemQuest;
           updatedHistoryCopy[1] = updatedItem;
 
         setConversationHistory(updatedHistoryCopy);
@@ -104,6 +115,9 @@ export default function ReturnInput() {
         setUserOutput("Error occurred");
       }
       setInitialLoading(false);
+      const storedList = JSON.parse(localStorage.getItem("itemsArray") ?? '[]');
+      setList(storedList);
+
     };
 
     fetchData();
@@ -119,136 +133,65 @@ export default function ReturnInput() {
     }
   }, [isLoading]);
 
-  const [city] = useState(() => {
-    const data = window.localStorage.getItem("city");
-    return data !== null ? data : "";
-  });
+  
+  useEffect(() => {
+    // Retrieve data from local storage
+    const storedList = JSON.parse(localStorage.getItem("itemsArray") ?? '[]');
+    const storedSavedItems = JSON.parse(localStorage.getItem('savedItemsKey') ?? '[]');
+    setList(storedList);
+    setSavedItems(storedSavedItems);
+  }, []);
 
-  const [local_flight_price] = useState(() => {
-    const data = window.localStorage.getItem("FLIGHT_PRICE");
-    return data !== null ? data : "";
-  });
 
-  const [local_hotel_price] = useState(() => {
-    const data = window.localStorage.getItem("HOTEL_PRICE");
-    return data !== null ? data : "";
-  });
 
-  const flight_price = parseFloat(local_flight_price);
-  const hotel_price = parseFloat(local_hotel_price);
-  const total_price = flight_price + hotel_price;
+  const handleButtonClick = (index: number) => {
 
-  const [travelfrom] = useState(() => {
-    const data = window.localStorage.getItem("TRAVEL_FROM");
-    return data !== null ? data : "";
-  });
+    const clickedItem = list[index];
+    // Check if the item is not already in the saved items list
+    if (savedItems.includes(clickedItem)) {
+      // Item is already saved, so remove it
+      const updatedSavedItems = savedItems.filter(item => item !== clickedItem);
+      setSavedItems(updatedSavedItems);
+      localStorage.setItem('savedItemsKey', JSON.stringify(updatedSavedItems));
+    } else {
+      // Item is not saved, so add it
+      const newSavedItems = [...savedItems, clickedItem];
+      setSavedItems(newSavedItems);
+      localStorage.setItem('savedItemsKey', JSON.stringify(newSavedItems));
+    }
+  };
 
-  const [travelto] = useState(() => {
-    const data = window.localStorage.getItem("TRAVEL_TO");
-    return data !== null ? data : "";
-  });
 
-  const [traveldate] = useState(() => {
-    const data = window.localStorage.getItem("TRAVEL_DATE");
-    return data !== null ? data : "";
-  });
 
-  const [traveltimedepart] = useState(() => {
-    const data = window.localStorage.getItem("TRAVEL_DATE_TIME_DEPART");
-    return data !== null ? data : "";
-  });
-
-  const [traveltimearrive] = useState(() => {
-    const data = window.localStorage.getItem("TRAVEL_DATE_TIME_ARRIVE");
-    return data !== null ? data : "";
-  });
-
-  const [returnfrom] = useState(() => {
-    const data = window.localStorage.getItem("RETURN_FROM");
-    return data !== null ? data : "";
-  });
-
-  const [returnto] = useState(() => {
-    const data = window.localStorage.getItem("RETURN_TO");
-    return data !== null ? data : "";
-  });
-
-  const [returndate] = useState(() => {
-    const data = window.localStorage.getItem("RETURN_DATE");
-    return data !== null ? data : "";
-  });
-
-  const [returntimedepart] = useState(() => {
-    const data = window.localStorage.getItem("RETURN_DATE_TIME_DEPART");
-    return data !== null ? data : "";
-  });
-
-  const [returntimearrive] = useState(() => {
-    const data = window.localStorage.getItem("RETURN_DATE_TIME_ARRIVE");
-    return data !== null ? data : "";
-  });
-
-  const [accommodation] = useState(() => {
-    const data = window.localStorage.getItem("AccommodationType");
-    return data !== null ? data : "";
-  });
-
-  const [accommodationName] = useState(() => {
-    const data = window.localStorage.getItem("AccommodationName");
-    return data !== null ? data : "";
-  });
-
-  const [adults] = useState(() => {
-    const data = window.localStorage.getItem("adults");
-    return data !== null ? data : "";
-  });
-
-  const [kids] = useState(() => {
-    const data = window.localStorage.getItem("kids");
-    return data !== null ? data : "";
-  });
-
-  const [interests] = useState(() => {
-    const data = window.localStorage.getItem("generatedInterests");
-    return data !== null ? data : "";
-  });
 
   return (
     <div>
       <div className="overview">
         <p>
-          <b>Your Trip Overview:</b>
+          <b>Save your favorite Experiences</b>
         </p>
-        <p>
-          <b>City:</b> {city}
-        </p>
-        <p>
-          <b>Total Price:</b> {total_price} EUR
-        </p>
-        <p>
-          <b>Departure:</b> <br />
-          {travelfrom} ⟶ {travelto}
-          <br />
-          {traveldate} 🕑 {traveltimedepart} - {traveltimearrive}
-        </p>
-        <p>
-          <b>Return:</b> <br />
-          {returnfrom} ⟶ {returnto}
-          <br />
-          {returndate} 🕑 {returntimedepart} - {returntimearrive}
-        </p>
-        <p>
-          <b>Accommodation:</b><br />{accommodationName}{" ("}{accommodation}{")"}
-        </p>
-        <p>
-          <b>Adults:</b> {adults}
-        </p>
-        <p>
-          <b>Kids:</b> {kids}
-        </p>
-        <p>
-          <b>Interests:</b> {interests}
-        </p>
+          <ul className="overview-list">
+            {list.map((item, index) => (
+              <li  className="overview-item" key={index}>
+              <div className="item-content">{item}</div>
+              <Button               
+                onClick={() => handleButtonClick(index)}
+                color="primary"
+                variant="contained"
+                style={{
+                  height: "50px",
+                  width: "130px",
+                  marginBottom: "14px",
+                  backgroundColor: savedItems.includes(list[index]) ? 'white' : '#3f50b5',
+                  color: savedItems.includes(list[index]) ? '#3f50b5' : 'white', 
+                  border: savedItems.includes(list[index]) ? '3px solid #3f50b5' : '3px solid #3f50b5',
+                  borderRadius: "8px"
+                }}>
+                  {savedItems.includes(list[index]) ? 'Unsave' : 'Save'}
+              </Button>
+              </li>
+            ))}
+          </ul>
       </div>
 
       <div className="gbtchat">

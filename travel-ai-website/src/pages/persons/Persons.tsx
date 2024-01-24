@@ -112,7 +112,7 @@ export default function CheckboxList() {
                 const labelId = `checkbox-list-label-${index}`;
 
                 return (
-                  <ListItem key={index} disablePadding className="person-list-item">
+                  <ListItem key={index} disablePadding className="person-list-item" sx={{backgroundColor:"rgba(255, 255, 255, 0.8)"}}>
                     <ListItemButton
                       role={undefined}
                       onClick={handleToggle(listName, itemName)}

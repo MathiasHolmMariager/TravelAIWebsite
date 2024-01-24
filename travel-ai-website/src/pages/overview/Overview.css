@@ -6,19 +6,21 @@
   
 
 .scrollable-box {
-    max-height: 600px; /* Adjust the height as needed */
-    width: 300px;
+    max-height: 717px; /* Adjust the height as needed */
+    width: 440px;
     overflow: auto;
     border: 1px solid #ccc;
     padding: 8px;
     background-color: rgba(255, 255, 255, 0.9);
-    border-radius: 5px;
+    border-radius: 8px;
     margin-right: 0px;
     margin-left: 0px;
+    text-align: center;
+    font-size: 20px;
   }
   .scrollable-box ul {
     list-style-type: none;
-    padding: 0;
+    padding: 8px;
     margin: 0;
   }
   .scrollable-box::-webkit-scrollbar {
@@ -31,28 +33,30 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: lightgray;
+    background-color: rgb(209, 235, 198);
     border: 1px solid #ccc;
     border-radius: 8px;
     padding: 8px;
     margin: 8px;
+    text-align: left;
   }
   .list-item-text {
     flex-grow: 1;
   }
   
    .scrollable-drop-lists {
-    max-height: 600px; 
+    max-height: 717px; 
     width: 800px;
     overflow: auto;
     border: 1px solid #ccc;
     padding: 8px;
     background-color: rgba(255, 255, 255, 0.562);
-    border-radius: 5px;
+    border-radius: 8px;
     margin-left:10px;
     display: flex;
     flex-direction: column;
     overflow-x: auto;
+    text-align: center;
 
 
   }
@@ -70,6 +74,31 @@
     border-radius: 5px;
     margin: 10px;
     text-align: center;
+
+  }
+
+  .overview {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    position: fixed;
+    margin-top: -50px;
+    margin-left: 210px;
+    width: 440px;
+    height: 732px;
+    background-color: rgba(255, 255, 255, 0.9);
+    text-align: center;
+    font-size: 20px;
+  }
+
+  .trip-overview{
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-left: 10px;
+    width: 440px;
+    height: 732px;
+    background-color: rgba(255, 255, 255, 0.9);
+    text-align: center;
+    font-size: 20px;
 
   }
 
