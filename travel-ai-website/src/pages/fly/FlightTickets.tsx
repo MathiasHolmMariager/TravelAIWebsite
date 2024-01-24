@@ -23,7 +23,9 @@ function FlightsComponent() {
       //from
       localStorage.setItem("TRAVEL_FROM", selectedItem.airport_departing_away);
       localStorage.setItem("TRAVEL_TO", selectedItem.airport_arriving_away);
-      localStorage.setItem("TRAVEL_DATE", selectedItem.departing_time_away.toLocaleDateString());
+      localStorage.setItem("TRAVEL_DATE", selectedItem.departing_time_away.toLocaleDateString(
+        'en-GB', {day: '2-digit', month: '2-digit', year: 'numeric'}
+      ));
       localStorage.setItem("TRAVEL_DATE_TIME_DEPART", selectedItem.departing_time_away.toLocaleTimeString(
         navigator.language,
         {
@@ -41,7 +43,9 @@ function FlightsComponent() {
       //to
       localStorage.setItem("RETURN_FROM", selectedItem.airport_departing_home);
       localStorage.setItem("RETURN_TO", selectedItem.airport_arriving_home);
-      localStorage.setItem("RETURN_DATE", selectedItem.departing_time_home.toLocaleDateString());
+      localStorage.setItem("RETURN_DATE", selectedItem.departing_time_home.toLocaleDateString(
+        'en-GB', {day: '2-digit', month: '2-digit', year: 'numeric'}
+      ));
       localStorage.setItem("RETURN_DATE_TIME_DEPART", selectedItem.departing_time_home.toLocaleTimeString(
         navigator.language,
         {
@@ -115,7 +119,7 @@ function FlightsComponent() {
                   </div>
 
                   <p>
-                    Travel date: {item.departing_time_away.toLocaleDateString()}{" "}
+                    Travel date: {item.departing_time_away.toLocaleDateString('en-GB', {day: '2-digit', month: '2-digit', year: 'numeric'})}{" "}
                     🕑{" "}
                     {item.departing_time_away.toLocaleTimeString(
                       navigator.language,
@@ -137,7 +141,7 @@ function FlightsComponent() {
                     {item.airport_departing_away} ⟶ {item.airport_arriving_away}
                   </p>
                   <p className="space">
-                    Return date: {item.departing_time_home.toLocaleDateString()}{" "}
+                    Return date: {item.departing_time_home.toLocaleDateString('en-GB', {day: '2-digit', month: '2-digit', year: 'numeric'})}{" "}
                     🕑{" "}
                     {item.departing_time_home.toLocaleTimeString(
                       navigator.language,

@@ -16,34 +16,36 @@ const Overview: React.FC = () => {
   const [numLists, setNumLists] = useState<number>(10);
 
   useEffect(() => {
-    const storedArray =
-      JSON.parse(localStorage.getItem("savedItemsKey")!) || [];
+    const storedArray = JSON.parse(localStorage.getItem("savedItemsKey")!) || [];
     setMyArray(storedArray);
-
+ 
     const travelDateStr = localStorage.getItem("TRAVEL_DATE");
     const returnDateStr = localStorage.getItem("RETURN_DATE");
-
+ 
     if (travelDateStr && returnDateStr) {
-      const travelDate = new Date(travelDateStr.split(".").reverse().join("-"));
-      const returnDate = new Date(returnDateStr.split(".").reverse().join("-"));
-
+      // Adjust date parsing for "DD/MM/YYYY" format
+      const [travelDay, travelMonth, travelYear] = travelDateStr.split("/");
+      const [returnDay, returnMonth, returnYear] = returnDateStr.split("/");
+ 
+      const travelDate = new Date(`${travelMonth}/${travelDay}/${travelYear}`);
+      const returnDate = new Date(`${returnMonth}/${returnDay}/${returnYear}`);
+ 
       if (!isNaN(travelDate.getTime()) && !isNaN(returnDate.getTime())) {
         const daysBetween =
           Math.ceil(
-            (returnDate.getTime() - travelDate.getTime()) /
-              (1000 * 60 * 60 * 24)
+            (returnDate.getTime() - travelDate.getTime()) / (1000 * 60 * 60 * 24)
           ) + 1;
         setNumLists(daysBetween);
-
-        //tilføjer arrive og depart tider i skema
+ 
+        // Adding arrive and depart times to the schedule
         const arrivetime = localStorage.getItem("TRAVEL_DATE_TIME_ARRIVE");
         const arriveloca = localStorage.getItem("TRAVEL_TO");
         const arriveItem = `Arriving time at ${arriveloca} is ${arrivetime}`;
-
+ 
         const departtime = localStorage.getItem("RETURN_DATE_TIME_ARRIVE");
         const departloca = localStorage.getItem("RETURN_FROM");
         const departItem = `Departing time at ${departloca} is ${departtime}`;
-
+ 
         if (arriveItem && departItem) {
           const updatedDroppedItems = { ...droppedItems };
           const lastDay = `Day ${daysBetween}`;
@@ -56,6 +58,7 @@ const Overview: React.FC = () => {
       }
     }
   }, []);
+
 
   const DraggableListItem = ({
     item,
@@ -88,9 +91,7 @@ const Overview: React.FC = () => {
           !isLastItemInFirstDroplist && (
             <button
               className="remove-button"
-              onClick={() => onRemove(index, category)}
-              
-            >
+              onClick={() => onRemove(index, category)}>
               Remove
             </button>
           )}
@@ -131,13 +132,13 @@ const Overview: React.FC = () => {
     };
 
     const travelDateStr = localStorage.getItem("TRAVEL_DATE");
-    const travelDate = dayjs(travelDateStr, "DD-MM-YYYY").add(index, "day");
+    const travelDate = dayjs(travelDateStr, "DD/MM/YYYY").add(index, "day");
     const dayOfWeek = travelDate.format("dddd");
 
     return (
-      <div key={category} ref={drop} className="scrollable-droplist">
-        <h3>{`${category}`}</h3>
-        <h3>{`${dayOfWeek} (${travelDate.format("DD-MM-YYYY")})`}</h3>
+      <div key={category} ref={drop} className="scrollable-droplist" style={{paddingRight:"50px"}}>
+        <h3 style={{paddingLeft:"42px"}}>{`${category}`} </h3>
+        <h3 style={{paddingLeft:"42px"}}>{`${dayOfWeek} (${travelDate.format("DD/MM/YYYY")})`}</h3>
         <ul>
           {droppedItems[category]?.map((item, index) => (
             <DraggableListItem
@@ -172,6 +173,7 @@ const Overview: React.FC = () => {
   const flight_price = parseFloat(local_flight_price);
   const hotel_price = parseFloat(local_hotel_price);
   const total_price = flight_price + hotel_price;
+  const formatted_total_price = total_price.toFixed(2);
 
   const [travelfrom] = useState(() => {
     const data = window.localStorage.getItem("TRAVEL_FROM");
@@ -282,7 +284,7 @@ const Overview: React.FC = () => {
             <b>City:</b> {city}
           </p>
           <p>
-            <b>Total Price:</b> {total_price} EUR
+            <b>Total Price:</b> {formatted_total_price} EUR
           </p>
           <p>
             <b>Departure:</b> <br />
